@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import {
   profile,
   education,
@@ -7,46 +9,58 @@ import {
 } from "./data";
 
 function App() {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="site">
       <Navbar />
 
       <section id="home" className="hero section">
         <div className="hero-left">
-          <p className="eyebrow">✦ Available for internships and software projects</p>
-
-          <h1>
-            Building mobile apps, backend systems, and AI-powered products.
+          <h1 className="hero-name">
+            <span>Soham</span>
+            <span>Panchal</span>
           </h1>
 
-          <p className="hero-text">{profile.intro}</p>
+          <h2 className="hero-title">Software Developer</h2>
+
+          <p className="hero-summary">
+            Honors Computer Science student at UT Arlington building mobile
+            apps, full-stack systems, and AI-powered tools using React Native,
+            Node.js, Spring Boot, and SQL.
+          </p>
 
           <div className="hero-actions">
             <a className="btn primary" href="#projects">
-              View Projects ↗
+              View Projects
             </a>
 
-            <a className="btn secondary" href={profile.resume} target="_blank">
-              Resume ↓
+            <a className="btn secondary" href={`mailto:${profile.email}`}>
+              Let&apos;s Talk
             </a>
           </div>
-        </div>
 
-        <div className="hero-card">
-          <div className="avatar">
-            <span>SP</span>
-          </div>
-
-          <h2>{profile.name}</h2>
-          <p>{profile.role}</p>
-
-          <div className="card-lines">
-            <span>📍 {profile.location}</span>
-            <span>✉️ {profile.email}</span>
-            <span>📞 {profile.phone}</span>
-          </div>
-
-          <div className="socials">
+          <div className="hero-socials">
             <a href={profile.github} target="_blank" aria-label="GitHub">
               GH
             </a>
@@ -58,6 +72,20 @@ function App() {
             </a>
           </div>
         </div>
+
+        <div className="hero-right reveal">
+          <div className="hero-photo-wrap">
+            <img src="/profile.jpg" alt="Soham Panchal" />
+          </div>
+
+          <div className="hero-info-card">
+            <div className="card-lines no-top-margin">
+              <span>📍 {profile.location}</span>
+              <span>✉️ {profile.email}</span>
+              <span>📞 {profile.phone}</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="about" className="section grid-section">
@@ -66,7 +94,7 @@ function App() {
           <h2>Software student focused on practical, shipped work.</h2>
         </div>
 
-        <div className="content-card">
+        <div className="content-card reveal">
           <p>
             I am an Honors Computer Science student at the University of Texas
             at Arlington with experience building mobile apps, backend APIs,
@@ -74,8 +102,8 @@ function App() {
           </p>
 
           <p>
-            My strongest areas are React Native, full-stack JavaScript,
-            REST APIs, relational databases, and backend architecture. I like
+            My strongest areas are React Native, full-stack JavaScript, REST
+            APIs, relational databases, and backend architecture. I like
             projects where the frontend, backend, and data layer work together
             cleanly.
           </p>
@@ -90,7 +118,7 @@ function App() {
 
         <div className="timeline">
           {experience.map((item) => (
-            <article className="timeline-card" key={item.title}>
+            <article className="timeline-card reveal" key={item.title}>
               <div className="icon-box">💼</div>
 
               <div>
@@ -122,7 +150,7 @@ function App() {
 
         <div className="projects-grid">
           {projects.map((project) => (
-            <article className="project-card" key={project.name}>
+            <article className="project-card reveal" key={project.name}>
               <div className="project-top">
                 <div>
                   <h3>{project.name}</h3>
@@ -159,7 +187,7 @@ function App() {
 
         <div className="skills-grid">
           {Object.entries(skills).map(([category, items]) => (
-            <div className="skill-card" key={category}>
+            <div className="skill-card reveal" key={category}>
               <h3>{category}</h3>
               <div className="skill-tags">
                 {items.map((skill) => (
@@ -178,7 +206,7 @@ function App() {
         </div>
 
         {education.map((item) => (
-          <article className="education-card" key={item.school}>
+          <article className="education-card reveal" key={item.school}>
             <div className="icon-box">🎓</div>
 
             <div>
@@ -225,7 +253,7 @@ function Navbar() {
   return (
     <header className="navbar">
       <a href="#home" className="logo">
-        Soham<span>.</span>
+        SP
       </a>
 
       <nav>

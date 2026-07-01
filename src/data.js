@@ -1,9 +1,9 @@
 export const profile = {
   name: "Soham Panchal",
-  role: "Computer Science Student & App Developer",
+  role: "Cross-Platform App Developer",
   location: "Arlington, TX",
   phone: "817-970-3444",
-  email: "sxp5938@mavs.uta.edu",
+  email: "work.panchalsoham@gmail.com",
   linkedin: "https://linkedin.com/in/soham-panchal/",
   github: "https://github.com/SohamxP",
   resume: "/resume.pdf",
