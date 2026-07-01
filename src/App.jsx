@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import {
   profile,
   education,
@@ -8,6 +10,27 @@ import {
 
 function App() {
   return (
+    useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []),
     <main className="site">
       <Navbar />
 
@@ -32,9 +55,9 @@ function App() {
           </div>
         </div>
 
-        <div className="hero-card">
+        <div className="hero-card reveal">
           <div className="avatar">
-            <span>SP</span>
+            <img src="/profile.jpg" alt="Soham Panchal" />
           </div>
 
           <h2>{profile.name}</h2>
@@ -66,7 +89,7 @@ function App() {
           <h2>Software student focused on practical, shipped work.</h2>
         </div>
 
-        <div className="content-card">
+        <div className="content-card reveal">
           <p>
             I am an Honors Computer Science student at the University of Texas
             at Arlington with experience building mobile apps, backend APIs,
@@ -90,7 +113,7 @@ function App() {
 
         <div className="timeline">
           {experience.map((item) => (
-            <article className="timeline-card" key={item.title}>
+            <article className="timeline-card reveal" key={item.title}>
               <div className="icon-box">💼</div>
 
               <div>
@@ -122,7 +145,7 @@ function App() {
 
         <div className="projects-grid">
           {projects.map((project) => (
-            <article className="project-card" key={project.name}>
+            <article className="project-card reveal" key={project.name}>
               <div className="project-top">
                 <div>
                   <h3>{project.name}</h3>
@@ -159,7 +182,7 @@ function App() {
 
         <div className="skills-grid">
           {Object.entries(skills).map(([category, items]) => (
-            <div className="skill-card" key={category}>
+            <div className="skill-card reveal" key={category}>
               <h3>{category}</h3>
               <div className="skill-tags">
                 {items.map((skill) => (
@@ -178,7 +201,7 @@ function App() {
         </div>
 
         {education.map((item) => (
-          <article className="education-card" key={item.school}>
+          <article className="education-card reveal" key={item.school}>
             <div className="icon-box">🎓</div>
 
             <div>
@@ -225,7 +248,7 @@ function Navbar() {
   return (
     <header className="navbar">
       <a href="#home" className="logo">
-        Soham<span>.</span>
+        SP
       </a>
 
       <nav>
