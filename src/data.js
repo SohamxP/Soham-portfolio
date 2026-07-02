@@ -15,8 +15,8 @@ export const education = [
   {
     school: "University of Texas at Arlington",
     degree: "Honors Bachelor of Science in Computer Science",
-    date: "Expected Dec 2027",
     location: "Arlington, TX",
+    date: "Expected Dec 2027",
     details: "GPA: 3.75",
   },
 ];
