@@ -88,27 +88,37 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="section grid-section">
-        <div>
-          <p className="label">About</p>
-          <h2>Software student focused on practical, shipped work.</h2>
-        </div>
+    <section id="about" className="section grid-section">
+      <div>
+        <p className="label">About</p>
+        <h2>
+        I build mobile and full-stack apps with a focus on clean, practical
+        execution.
+        </h2>
+      </div>
 
-        <div className="content-card reveal">
-          <p>
-            I am an Honors Computer Science student at the University of Texas
-            at Arlington with experience building mobile apps, backend APIs,
-            AI-powered tools, and database-backed systems.
-          </p>
+      <div className="content-card reveal">
+      <p>
+        I am an Honors Computer Science student at the University of Texas at
+      Arlington, focused on building real software products instead of only
+      classroom projects. I enjoy turning ideas into working apps with clean UI,
+      reliable APIs, and organized data flow.
+      </p>
 
-          <p>
-            My strongest areas are React Native, full-stack JavaScript, REST
-            APIs, relational databases, and backend architecture. I like
-            projects where the frontend, backend, and data layer work together
-            cleanly.
-          </p>
-        </div>
-      </section>
+      <p>
+      My current work is centered around React Native, JavaScript, TypeScript,
+      Spring Boot, REST APIs, and relational databases. I am especially
+      interested in mobile app development, backend systems, and AI-assisted
+      developer tools.
+      </p>
+
+      <div className="about-highlights">
+        <span>Mobile-first development</span>
+        <span>Backend API design</span>
+        <span>AI-assisted tools</span>
+      </div>
+      </div>
+    </section>
 
       <section id="experience" className="section">
         <div className="section-heading">
