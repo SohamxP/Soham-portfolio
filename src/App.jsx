@@ -45,7 +45,7 @@ function App() {
           <h2 className="hero-title">Software Developer</h2>
 
           <p className="hero-summary">
-            Honors Computer Science student at UT Arlington building mobile
+            Software Developer building mobile
             apps, full-stack systems, and AI-powered tools using React Native,
             Node.js, Spring Boot, and SQL.
           </p>
@@ -88,37 +88,40 @@ function App() {
         </div>
       </section>
 
-    <section id="about" className="section grid-section">
-      <div>
-        <p className="label">About</p>
-        <h2>
-        I build mobile and full-stack apps with a focus on clean, practical
-        execution.
-        </h2>
-      </div>
+<section id="about" className="section grid-section">
+  <div className="about-heading">
+    <p className="label">About</p>
 
-      <div className="content-card reveal">
-      <p>
-        I am an Honors Computer Science student at the University of Texas at
-      Arlington, focused on building real software products instead of only
-      classroom projects. I enjoy turning ideas into working apps with clean UI,
-      reliable APIs, and organized data flow.
-      </p>
+    <h2>
+      From interface to API, I like understanding the whole system.
+    </h2>
+  </div>
 
-      <p>
-      My current work is centered around React Native, JavaScript, TypeScript,
-      Spring Boot, REST APIs, and relational databases. I am especially
-      interested in mobile app development, backend systems, and AI-assisted
-      developer tools.
-      </p>
+  <div className="content-card about-card reveal">
+    <p className="about-lead">
+      I’m a software developer focused on building mobile applications,
+      backend APIs, and database-backed systems.
+    </p>
 
-      <div className="about-highlights">
-        <span>Mobile-first development</span>
-        <span>Backend API design</span>
-        <span>AI-assisted tools</span>
-      </div>
-      </div>
-    </section>
+    <p>
+      My work spans frontend and backend development. I enjoy taking a feature
+      from an initial requirement to a responsive interface, application state,
+      API integration, business logic, and persistent data.
+    </p>
+
+    <p>
+      I’m especially interested in understanding how data moves through a
+      system, where failures occur, and how software can be structured so it
+      remains reliable and understandable as it grows.
+    </p>
+
+    <div className="about-strengths">
+      <span>End-to-end feature development</span>
+      <span>API and data flows</span>
+      <span>Structured debugging</span>
+    </div>
+  </div>
+</section>
 
       <section id="experience" className="section">
         <div className="section-heading">
