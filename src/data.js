@@ -1,6 +1,6 @@
 export const profile = {
   name: "Soham Panchal",
-  role: "Cross-Platform App Developer",
+  role: "Software Developer",
   location: "Arlington, TX",
   phone: "817-970-3444",
   email: "work.panchalsoham@gmail.com",
@@ -23,13 +23,13 @@ export const education = [
 
 export const experience = [
   {
-    title: "App Developer Intern",
+    title: "Software Developer Intern",
     company: "E-Sutra Technologies",
     date: "Jun 2026 — Present",
     location: "Mumbai, India",
     points: [
-      "Developing cross-platform mobile app features using React Native and JavaScript with reusable components and clean screen structure.",
-      "Implementing navigation flows, form handling, API-connected screens, and local state management.",
+      "Contributing to full-stack mobile application development by building feature workflows, integrating backend APIs, and supporting backend-driven notification logic.",
+      "Developed notification framework modules including dispatcher logic, generic notification interfaces, push notification stubs, and template structures to support scalable event-driven communication.",
       "Integrating mobile frontend screens with backend REST APIs using asynchronous requests and structured error handling.",
       "Debugging UI, API, and performance issues across mobile screens through user-flow testing and network inspection.",
     ],
