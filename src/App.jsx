@@ -151,14 +151,13 @@ function App() {
         <div className="projects-grid">
           {projects.map((project) => (
             <article className="project-card reveal" key={project.name}>
-              <div className="project-top">
-                <div>
-                  <h3>{project.name}</h3>
-                  <p>{project.subtitle}</p>
-                </div>
-                <span className="project-icon">{"</>"}</span>
+            <div className="project-top">
+              <div>
+                <h3>{project.name}</h3>
+                <p>{project.subtitle}</p>
               </div>
-
+             <span className="project-date-badge">{project.date}</span>
+            </div>
               <p className="project-desc">{project.description}</p>
 
               <div className="tech-list">
@@ -173,7 +172,19 @@ function App() {
                 ))}
               </ul>
 
-              <p className="date">{project.date}</p>
+              <div className="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noreferrer">
+                View Code
+              </a>
+              )}
+
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noreferrer">
+                Live Demo
+             </a>
+            )}
+          </div>
             </article>
           ))}
         </div>
