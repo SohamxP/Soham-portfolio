@@ -173,7 +173,21 @@ function App() {
                 ))}
               </ul>
 
-              <p className="date">{project.date}</p>
+              <div className="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noreferrer">
+                View Code
+              </a>
+              )}
+
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noreferrer">
+                Live Demo
+             </a>
+            )}
+          </div>
+
+          <p className="date">{project.date}</p>
             </article>
           ))}
         </div>

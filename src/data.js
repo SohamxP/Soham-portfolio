@@ -49,6 +49,8 @@ export const projects = [
       "Designed backend models for users, files, generated study materials, and AI conversation history.",
       "Created reusable TypeScript API utilities for authentication, uploads, AI requests, parsing, and error handling.",
     ],
+    github: "https://github.com/SohamxP/campus-ai",
+    demo: "",
   },
   {
     name: "Hotel Management Platform",
@@ -63,6 +65,8 @@ export const projects = [
       "Integrated Stripe Checkout with backend sessions and frontend success/cancel states.",
       "Added AI features including manager briefing, occupancy forecasting, revenue insights, and guest-recovery drafts.",
     ],
+    github: "https://github.com/SohamxP/hotel-management-app",
+    demo: "",
   },
   {
     name: "RideWise",
@@ -76,6 +80,8 @@ export const projects = [
       "Built a fare-comparison engine using distance, route, trip mode, and pricing variables.",
       "Separated data-fetching, business logic, and UI responsibilities across application layers.",
     ],
+    github: "https://github.com/SohamxP/ridewise",
+    demo: "",
   },
 ];
 
