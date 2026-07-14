@@ -28,7 +28,7 @@ export const experience = [
     date: "Jun 2026 — Present",
     location: "Mumbai, India",
     points: [
-      "Contributing to full-stack mobile application development by building feature workflows, integrating backend APIs, and supporting backend-driven notification logic.",
+      "Contributing to full-stack development by building feature workflows, integrating backend APIs, and supporting backend-driven notification logic.",
       "Developed notification framework modules including dispatcher logic, generic notification interfaces, push notification stubs, and template structures to support scalable event-driven communication.",
       "Integrating mobile frontend screens with backend REST APIs using asynchronous requests and structured error handling.",
       "Debugging UI, API, and performance issues across mobile screens through user-flow testing and network inspection.",

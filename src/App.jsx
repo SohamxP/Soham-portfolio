@@ -45,9 +45,8 @@ function App() {
           <h2 className="hero-title">Software Developer</h2>
 
           <p className="hero-summary">
-            Software Developer building mobile
-            apps, full-stack systems, and AI-powered tools using React Native,
-            Node.js, Spring Boot, and SQL.
+            BUILDING SCALABLE FULL-STACK AND MOBILE APPLICATIONS WITH JAVA, SPRING BOOT, REACT NATIVE, NODE.JS & CLOUD TECHNOLOGIES
+            PASSIONATE ABOUT SOFTWARE ENGINEERING, BACKEND SYSTEMS, AI-POWERED PRODUCTS & REAL-WORLD PROBLEM SOLVING
           </p>
 
           <div className="hero-actions">
