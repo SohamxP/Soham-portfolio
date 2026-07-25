@@ -2,13 +2,10 @@ export const profile = {
   name: "Soham Panchal",
   role: "Software Developer",
   location: "Arlington, TX",
-  phone: "817-970-3444",
   email: "work.panchalsoham@gmail.com",
   linkedin: "https://linkedin.com/in/soham-panchal/",
   github: "https://github.com/SohamxP",
   resume: "/resume.pdf",
-  intro:
-    "I build full-stack and mobile applications using React Native, Next.js, Node.js, Spring Boot, and relational databases. I enjoy creating clean user experiences backed by practical, reliable backend systems.",
 };
 
 export const education = [
@@ -26,12 +23,17 @@ export const experience = [
     title: "Software Developer Intern",
     company: "E-Sutra Technologies",
     date: "Jun 2026 — Present",
-    location: "Mumbai, India",
+    location: "Mumbai, India · Remote",
     points: [
-      "Contributing to full-stack mobile application development by building feature workflows, integrating backend APIs, and supporting backend-driven notification logic.",
-      "Developed notification framework modules including dispatcher logic, generic notification interfaces, push notification stubs, and template structures to support scalable event-driven communication.",
-      "Integrating mobile frontend screens with backend REST APIs using asynchronous requests and structured error handling.",
-      "Debugging UI, API, and performance issues across mobile screens through user-flow testing and network inspection.",
+      "Drove the stabilization of critical application workflows by resolving cross-layer failures spanning backend services, API integrations, authentication, and database architecture.",
+      "Hardened backend functionality by eliminating logic defects, strengthening validation, and correcting data-integrity issues that caused inconsistent application behavior.",
+      "Led complex issue resolution from root-cause analysis to QA readiness, coordinating implementation, environment testing, regression validation, and release preparation.",
+    ],
+    impact: [
+      "Cross-layer ownership",
+      "API reliability",
+      "Database integrity",
+      "Release validation",
     ],
   },
 ];
@@ -39,31 +41,59 @@ export const experience = [
 export const projects = [
   {
     name: "CampusAI",
-    subtitle: "AI Academic Productivity App",
-    tech: ["React Native", "Next.js", "Node.js", "TypeScript", "OpenAI API"],
+    subtitle: "AI Academic Productivity Platform",
+    featured: true,
+    status: "Featured Build",
     date: "May 2026 — Present",
     description:
-      "A full-stack academic productivity platform for mobile and web with AI-powered study workflows.",
-    points: [
-      "Built AI workflows for note summarization, flashcard generation, PDF Q&A, and conversational tutoring.",
-      "Designed backend models for users, files, generated study materials, and AI conversation history.",
-      "Created reusable TypeScript API utilities for authentication, uploads, AI requests, parsing, and error handling.",
+      "A unified academic workspace that transforms course material into searchable notes, summaries, flashcards, document-based answers, and personalized tutoring conversations.",
+    highlights: [
+      {
+        label: "Product",
+        value:
+          "Combined document management, AI-assisted studying, and persistent learning history into one focused workflow.",
+      },
+      {
+        label: "Engineering",
+        value:
+          "Built reusable service layers for authentication, uploads, model requests, response parsing, and resilient error handling.",
+      },
+      {
+        label: "Data",
+        value:
+          "Designed structured models for users, files, generated study resources, and conversation history across web and mobile experiences.",
+      },
+    ],
+    tech: [
+      "React Native",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "OpenAI API",
     ],
     github: "https://github.com/SohamxP/campus-ai",
     demo: "",
   },
   {
     name: "Hotel Management Platform",
-    subtitle: "Operations Platform",
-    tech: ["React Native", "Node.js", "Express", "SQLite", "OpenAI API", "Stripe Checkout"],
+    subtitle: "Operations and Intelligence Platform",
+    featured: false,
+    status: "Completed",
     date: "Jan 2026 — May 2026",
     description:
-      "A full-stack hotel operations platform for reservations, guests, services, billing, reports, and AI-assisted manager insights.",
+      "An operations platform for reservations, guests, services, billing, reporting, payments, and AI-assisted management insights.",
     points: [
-      "Designed a relational SQLite database with 12 entities and business-rule triggers.",
-      "Developed REST APIs for rooms, reservations, guests, services, reports, and billing workflows.",
-      "Integrated Stripe Checkout with backend sessions and frontend success/cancel states.",
-      "Added AI features including manager briefing, occupancy forecasting, revenue insights, and guest-recovery drafts.",
+      "Designed a relational database spanning 12 entities with business-rule triggers and structured operational data.",
+      "Developed service workflows for reservations, rooms, guests, billing, reporting, and payment processing.",
+      "Added manager briefings, occupancy forecasting, revenue insights, and guest-recovery assistance.",
+    ],
+    tech: [
+      "React Native",
+      "Node.js",
+      "Express",
+      "SQLite",
+      "OpenAI API",
+      "Stripe",
     ],
     github: "https://github.com/SohamxP/hotel-management-app",
     demo: "",
@@ -71,65 +101,68 @@ export const projects = [
   {
     name: "RideWise",
     subtitle: "Smart Ride Comparison App",
-    tech: ["Java", "Android SDK", "Firebase", "Google Maps API"],
+    featured: false,
+    status: "Maintained",
     date: "Oct 2025 — Present",
     description:
-      "A native Android ride comparison app that estimates ride costs using route and pricing variables.",
+      "A native ride-comparison application that estimates trip costs using route, distance, trip mode, and dynamic pricing inputs.",
     points: [
-      "Used Firebase Authentication, Firestore, and Google Maps API for synced user sessions and route calculation.",
-      "Built a fare-comparison engine using distance, route, trip mode, and pricing variables.",
-      "Separated data-fetching, business logic, and UI responsibilities across application layers.",
+      "Built synchronized user sessions and route-based trip calculations.",
+      "Developed a fare-comparison engine using distance, route, trip mode, and pricing variables.",
+      "Separated data access, application logic, and interface responsibilities across distinct layers.",
     ],
+    tech: ["Java", "Android SDK", "Firebase", "Google Maps API"],
     github: "https://github.com/SohamxP/ridewise",
     demo: "",
   },
 ];
 
-export const skills = {
-  Languages: ["Java", "JavaScript", "TypeScript", "SQL", "Python", "C/C++"],
-  "Backend & APIs": [
-    "Spring Boot",
-    "Node.js",
-    "Express",
-    "REST APIs",
-    "JWT Authentication",
-    "OpenAI API",
-    "Stripe Checkout",
-  ],
-  "Frontend & Mobile": [
-    "React",
-    "React Native",
-    "Expo",
-    "Next.js",
-    "Component-Based UI",
-  ],
-  Databases: [
-    "MySQL",
-    "PostgreSQL",
-    "SQLite",
-    "Oracle SQL",
-    "Relational Data Modeling",
-    "SQL Schema Design",
-  ],
-  Tools: [
-    "Git",
-    "GitHub",
-    "Postman",
-    "Swagger",
-    "IntelliJ",
-    "VS Code",
-    "Firebase",
-    "Supabase",
-    "Vercel",
-    "Render",
-  ],
-  "Software Engineering": [
-    "API Integration",
-    "MVC Architecture",
-    "DTO Design",
-    "Error Handling",
-    "State Management",
-    "Authentication",
-    "Debugging",
-  ],
-};
+export const skills = [
+  {
+    category: "Languages",
+    description:
+      "Core languages used across application, backend, and data work.",
+    items: ["Java", "JavaScript", "TypeScript", "SQL", "Python", "C/C++"],
+  },
+  {
+    category: "Frameworks",
+    description:
+      "Tools used to build user-facing products and backend services.",
+    items: [
+      "Spring Boot",
+      "React Native",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express",
+    ],
+  },
+  {
+    category: "Data & Cloud",
+    description:
+      "Relational systems, hosted services, and application infrastructure.",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "SQLite",
+      "Firebase",
+      "Supabase",
+      "Vercel",
+      "Render",
+    ],
+  },
+  {
+    category: "Engineering Tools",
+    description:
+      "Development, testing, collaboration, and delivery tooling.",
+    items: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Postman",
+      "Swagger",
+      "Jira",
+      "Figma",
+    ],
+  },
+];
