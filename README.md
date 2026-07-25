@@ -6,7 +6,7 @@ The site is designed to present my work across application development, backend 
 
 ## Live Portfolio
 
-[View Portfolio](https://your-portfolio-url.com)
+[View Portfolio](https://sohampanchal.netlify.app)
 
 Replace the link above with your deployed portfolio URL.
 
