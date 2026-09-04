@@ -8,8 +8,6 @@ The site is designed to present my work across application development, backend 
 
 [View Portfolio](https://sohampanchal.netlify.app)
 
-Replace the link above with your deployed portfolio URL.
-
 ## About the Portfolio
 
 This portfolio highlights:
