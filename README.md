@@ -31,15 +31,15 @@ Explains my approach to building reliable software across application, backend, 
 
 ### Experience
 
-Highlights my work as a Software Developer Intern, including cross-layer debugging, backend improvements, data validation, API reliability, and QA-ready delivery.
+Highlights my completed Software Developer Internship at E-Sutra Technologies, including cross-layer debugging, backend improvements, data validation, API reliability, and regression testing.
 
 ### Projects
 
 Features selected projects such as:
 
-* **CampusAI** — AI-powered academic productivity platform
-* **Hotel Management Platform** — Operations, reservation, billing, and reporting system
-* **RideWise** — Ride comparison and fare estimation application
+* **CampusAI** — RAG-based academic productivity platform with hybrid retrieval and reranking
+* **Hotel Management Platform** — Full-stack hotel operations platform with RBAC, PostgreSQL, Prisma, and Stripe
+* **RideWise** — Android ML ride-decision platform using XGBoost and traffic-aware routing
 
 ### Skills
 
@@ -52,7 +52,7 @@ Organized into:
 
 ### Education
 
-Includes my Computer Science degree at the University of Texas at Arlington.
+Includes my Honors B.S. in Computer Science, Mathematics minor, GPA, and expected graduation at the University of Texas at Arlington.
 
 ## Built With
 

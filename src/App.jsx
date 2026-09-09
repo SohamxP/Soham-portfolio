@@ -204,9 +204,9 @@ function App() {
 
         <div className="content-card about-card reveal">
           <p className="about-lead">
-            I’m a software developer who works across application layers—from
-            user-facing product experiences and state management to backend
-            services, APIs, and relational data.
+            I’m an Honors Computer Science student at the University of Texas at
+            Arlington, pursuing a minor in Mathematics and building across
+            backend systems, web and mobile applications, data, and applied AI.
           </p>
 
           <p>
@@ -217,16 +217,15 @@ function App() {
           </p>
 
           <p>
-            I approach software as a connected product rather than a collection
-            of isolated screens or endpoints. That perspective helps me take
-            ownership of complete workflows, make sound technical decisions,
-            and deliver work that is easier to test, maintain, and extend.
+            Recent projects have pushed me deeper into machine learning,
+            retrieval systems, cloud deployment, testing, and transactional
+            backend design while keeping the focus on complete, usable products.
           </p>
 
           <div className="about-strengths">
-            <span>End-to-end ownership</span>
             <span>Backend and data systems</span>
-            <span>Root-cause problem solving</span>
+            <span>Applied AI & machine learning</span>
+            <span>End-to-end product engineering</span>
           </div>
         </div>
       </section>
