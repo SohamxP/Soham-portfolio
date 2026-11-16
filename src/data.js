@@ -77,6 +77,43 @@ export const projects = [
     demo: "https://campus-ai-peach.vercel.app",
   },
   {
+    name: "OpenFile Chess",
+    subtitle: "Java Chess Engine & Interactive Game Review",
+    featured: true,
+    status: "Active Build",
+    date: "Oct 2026 — Present",
+    description:
+      "A full-stack chess application built around a custom Java engine, with a responsive React interface for human-versus-computer play and a separate, browser-based Stockfish review experience.",
+    highlights: [
+      {
+        label: "Engine & Rules",
+        value:
+          "Implemented legal move generation, castling, en passant, promotion, checkmate, stalemate, repetition, and move-count draws in Java, exposed through a Spring Boot REST API.",
+      },
+      {
+        label: "AI Search",
+        value:
+          "Built a computer opponent using iterative deepening, negamax, alpha-beta pruning, quiescence search, and a history-aware transposition table with adjustable difficulty.",
+      },
+      {
+        label: "Game Experience",
+        value:
+          "Developed an interactive React/TypeScript board with FIDE algebraic notation, move replay, captured material, and a dedicated review page powered by Stockfish 19 Lite WebAssembly. Added Java, frontend, and Playwright tests.",
+      },
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "React",
+      "TypeScript",
+      "Stockfish.js",
+      "Playwright",
+      "Docker",
+    ],
+    github: "https://github.com/SohamxP/chess-engine",
+    demo: "",
+  },
+  {
     name: "Hotel Management Platform",
     subtitle: "Full-Stack Hotel Operations Platform",
     featured: false,
@@ -171,6 +208,7 @@ export const skills = [
     items: [
       "Pytest",
       "Vitest",
+      "Playwright",
       "Supertest",
       "GitHub Actions",
       "Docker",
@@ -195,6 +233,8 @@ export const skills = [
       "Concepts I apply when designing reliable data, backend, and intelligent application systems.",
     items: [
       "Data Structures & Algorithms",
+      "Game Tree Search",
+      "Alpha-Beta Pruning",
       "Machine Learning",
       "RAG",
       "Vector Search",
