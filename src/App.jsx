@@ -218,8 +218,9 @@ function App() {
 
           <p>
             Recent projects have pushed me deeper into machine learning,
-            retrieval systems, cloud deployment, testing, and transactional
-            backend design while keeping the focus on complete, usable products.
+            retrieval systems, game-tree search, cloud deployment, testing,
+            and transactional backend design while keeping the focus on
+            complete, usable products.
           </p>
 
           <div className="about-strengths">
