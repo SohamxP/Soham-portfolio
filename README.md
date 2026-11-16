@@ -37,8 +37,8 @@ Highlights my completed Software Developer Internship at E-Sutra Technologies, i
 
 Features selected projects such as:
 
+* **PlyForge** — Live custom Java/Spring Boot chess engine with alpha-beta search, React/TypeScript gameplay, and Stockfish-powered review ([play demo](https://openfile-chess.onrender.com/))
 * **CampusAI** — RAG-based academic productivity platform with hybrid retrieval and reranking
-* **OpenFile Chess** — Custom Java/Spring Boot chess engine with alpha-beta search, React/TypeScript gameplay, and a separate Stockfish-powered review experience
 * **Hotel Management Platform** — Full-stack hotel operations platform with RBAC, PostgreSQL, Prisma, and Stripe
 * **RideWise** — Android ML ride-decision platform using XGBoost and traffic-aware routing
 
