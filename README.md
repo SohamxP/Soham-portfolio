@@ -38,6 +38,7 @@ Highlights my completed Software Developer Internship at E-Sutra Technologies, i
 Features selected projects such as:
 
 * **CampusAI** — RAG-based academic productivity platform with hybrid retrieval and reranking
+* **OpenFile Chess** — Custom Java/Spring Boot chess engine with alpha-beta search, React/TypeScript gameplay, and a separate Stockfish-powered review experience
 * **Hotel Management Platform** — Full-stack hotel operations platform with RBAC, PostgreSQL, Prisma, and Stripe
 * **RideWise** — Android ML ride-decision platform using XGBoost and traffic-aware routing
 
@@ -46,9 +47,11 @@ Features selected projects such as:
 Organized into:
 
 * Languages
-* Frameworks
-* Data and Cloud
-* Engineering Tools
+* Frameworks & Libraries
+* Data & AI
+* Testing & DevOps
+* Cloud & APIs
+* Core Engineering
 
 ### Education
 
