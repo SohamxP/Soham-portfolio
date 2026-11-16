@@ -40,29 +40,42 @@ export const experience = [
 
 export const projects = [
   {
+    name: "PlyForge",
+    subtitle: "Java Chess Engine & Interactive Game Review",
+    featured: false,
+    status: "Live",
+    date: "Oct 2026 — Present",
+    description:
+      "A full-stack chess application built around a custom Java engine, with a responsive React interface for human-versus-computer play and a separate, browser-based Stockfish review experience.",
+    points: [
+      "Implemented chess rules and legal move validation in Java, including castling, promotion, en passant, checkmate, and draw conditions, exposed through Spring Boot APIs.",
+      "Developed a custom AI opponent with iterative deepening, negamax, alpha-beta pruning, quiescence search, and a history-aware transposition table.",
+      "Built a React/TypeScript game with SAN notation, move replay, captured pieces, and a separate Stockfish-powered review page; tested with Java, frontend, and Playwright suites.",
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "React",
+      "TypeScript",
+      "Stockfish.js",
+      "Playwright",
+      "Docker",
+    ],
+    github: "https://github.com/SohamxP/chess-engine",
+    demo: "https://openfile-chess.onrender.com/",
+  },
+  {
     name: "CampusAI",
     subtitle: "AI Academic Productivity Platform",
-    featured: true,
+    featured: false,
     status: "Completed",
     date: "May 2026 — Sep 2026",
     description:
       "A deployed full-stack RAG study platform that turns uploaded course PDFs into searchable, source-grounded learning material through document ingestion, retrieval, reranking, and AI-assisted study workflows.",
-    highlights: [
-      {
-        label: "Retrieval",
-        value:
-          "Built vector search, hybrid semantic/keyword retrieval with reciprocal rank fusion, and Cross-Encoder reranking; on a 42-question labeled evaluation set, improved Recall@1 from 64.29% to 85.71% and MRR from 0.745 to 0.900.",
-      },
-      {
-        label: "Study Workflows",
-        value:
-          "Implemented course-scoped PDF question answering with citations, flashcard and quiz generation, mastery tracking, and authenticated document ownership.",
-      },
-      {
-        label: "Engineering",
-        value:
-          "Connected a Next.js web client to Python/FastAPI AI services and PostgreSQL/pgvector storage, with automated tests and GitHub Actions CI.",
-      },
+    points: [
+      "Built a full-stack RAG study platform using PDF ingestion, PostgreSQL/pgvector, hybrid semantic and keyword search, and Cross-Encoder reranking.",
+      "Evaluated retrieval on 42 labeled questions, improving Recall@1 from 64.29% to 85.71% and MRR from 0.745 to 0.900.",
+      "Implemented course-scoped question answering with citations, flashcards, quizzes, mastery tracking, automated tests, and CI.",
     ],
     tech: [
       "Next.js",
@@ -75,43 +88,6 @@ export const projects = [
     ],
     github: "https://github.com/SohamxP/campus-ai",
     demo: "https://campus-ai-peach.vercel.app",
-  },
-  {
-    name: "OpenFile Chess",
-    subtitle: "Java Chess Engine & Interactive Game Review",
-    featured: true,
-    status: "Active Build",
-    date: "Oct 2026 — Present",
-    description:
-      "A full-stack chess application built around a custom Java engine, with a responsive React interface for human-versus-computer play and a separate, browser-based Stockfish review experience.",
-    highlights: [
-      {
-        label: "Engine & Rules",
-        value:
-          "Implemented legal move generation, castling, en passant, promotion, checkmate, stalemate, repetition, and move-count draws in Java, exposed through a Spring Boot REST API.",
-      },
-      {
-        label: "AI Search",
-        value:
-          "Built a computer opponent using iterative deepening, negamax, alpha-beta pruning, quiescence search, and a history-aware transposition table with adjustable difficulty.",
-      },
-      {
-        label: "Game Experience",
-        value:
-          "Developed an interactive React/TypeScript board with FIDE algebraic notation, move replay, captured material, and a dedicated review page powered by Stockfish 19 Lite WebAssembly. Added Java, frontend, and Playwright tests.",
-      },
-    ],
-    tech: [
-      "Java",
-      "Spring Boot",
-      "React",
-      "TypeScript",
-      "Stockfish.js",
-      "Playwright",
-      "Docker",
-    ],
-    github: "https://github.com/SohamxP/chess-engine",
-    demo: "",
   },
   {
     name: "Hotel Management Platform",
