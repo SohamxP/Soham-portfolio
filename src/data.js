@@ -40,17 +40,17 @@ export const experience = [
 
 export const projects = [
   {
-    name: "PlyForge",
-    subtitle: "Java Chess Engine & Interactive Game Review",
+    name: "PlySense",
+    subtitle: "Personal Chess Improvement Engine",
     featured: false,
     status: "Live",
     date: "Oct 2026 — Present",
     description:
-      "A full-stack chess application built around a custom Java engine, with a responsive React interface for human-versus-computer play and a separate, browser-based Stockfish review experience.",
+      "A local-first chess improvement platform combining a custom Java chess engine, PGN import, Stockfish-powered game review, and interactive spaced-repetition training from players' own mistakes.",
     points: [
-      "Implemented chess rules and legal move validation in Java, including castling, promotion, en passant, checkmate, and draw conditions, exposed through Spring Boot APIs.",
-      "Developed a custom AI opponent with iterative deepening, negamax, alpha-beta pruning, quiescence search, and a history-aware transposition table.",
-      "Built a React/TypeScript game with SAN notation, move replay, captured pieces, and a separate Stockfish-powered review page; tested with Java, frontend, and Playwright suites.",
+      "Built a Java/Spring Boot chess engine with complete legal move generation and an AI opponent using iterative deepening, negamax, alpha-beta pruning, quiescence search, and transposition caching.",
+      "Developed a React/TypeScript interface supporting chess gameplay, standard algebraic notation, PGN import, move replay, captured pieces, and browser-local saved games.",
+      "Integrated Stockfish 19 Lite for full-game analysis, targeted deeper verification, cached evaluations, and Decision Lab practice from confirmed mistakes; validated with Java, Vitest, Playwright, Docker, and CI.",
     ],
     tech: [
       "Java",
