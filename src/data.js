@@ -48,9 +48,9 @@ export const projects = [
     description:
       "A local-first chess improvement platform with a custom Java engine, PGN import, evidence-based mistake detection across games, and Stockfish-assisted training.",
     points: [
-      "Implemented a Java/Spring Boot chess engine with negamax, alpha-beta pruning, quiescence search, and transposition caching; verified legal move generation against canonical perft counts and built reproducible search benchmarks.",
+      "Built a Java/Spring Boot chess engine with negamax, alpha-beta pruning, and transposition caching; validated perft correctness and measured 24–29% lower median latency on three fixed depth-2 CI A/B benchmarks after reusing legal-move generation, with unchanged scores.",
       "Developed a React/TypeScript interface supporting chess gameplay, standard algebraic notation, PGN import, move replay, captured pieces, and browser-local saved games.",
-      "Built cross-game Personal Mistake Patterns backed by verified Stockfish scores and legal-move evidence, with position-level review links, adaptive Decision Lab scheduling, and a practice-progress dashboard; validated with Java, Vitest, Playwright, Docker, and CI.",
+      "Built evidence-based cross-game mistake detection, adaptive Decision Lab scheduling, and a progress dashboard; tested the full PGN-to-personalized-training workflow and corrupt-game recovery with Playwright and CI.",
     ],
     tech: [
       "Java",
