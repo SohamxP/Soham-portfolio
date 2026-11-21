@@ -37,7 +37,7 @@ Highlights my completed Software Developer Internship at E-Sutra Technologies, i
 
 Features selected projects such as:
 
-* **PlySense** — Local-first chess improvement platform with a custom Java/Spring Boot AI, canonical perft tests, measured Java search optimization, verified cross-game mistake patterns, and adaptive training with progress tracking ([try PlySense](https://openfile-chess.onrender.com/))
+* **PlySense** — Local-first chess improvement platform with a custom Java/Spring Boot AI, canonical perft tests, measured Java search optimization, a 2,000-game IndexedDB library with JSON backup/restore, and adaptive mistake-based training ([try PlySense](https://openfile-chess.onrender.com/))
 * **CampusAI** — RAG-based academic productivity platform with hybrid retrieval and reranking
 * **Hotel Management Platform** — Full-stack hotel operations platform with RBAC, PostgreSQL, Prisma, and Stripe
 * **RideWise** — Android ML ride-decision platform using XGBoost and traffic-aware routing

@@ -41,16 +41,16 @@ export const experience = [
 export const projects = [
   {
     name: "PlySense",
-    subtitle: "Personal Chess Improvement Engine",
-    featured: false,
-    status: "Live",
-    date: "Oct 2026 — Present",
+    subtitle: "Personal Chess Improvement Engine · v1.0",
+    featured: true,
+    status: "Live · v1.0",
+    date: "Oct 2026 — Nov 2026",
     description:
       "A local-first chess improvement platform with a custom Java engine, PGN import, evidence-based mistake detection across games, and Stockfish-assisted training.",
     points: [
       "Built a Java/Spring Boot chess engine with negamax, alpha-beta pruning, and transposition caching; validated perft correctness and measured 24–29% lower median latency on three fixed depth-2 CI A/B benchmarks after reusing legal-move generation, with unchanged scores.",
-      "Developed a React/TypeScript interface supporting chess gameplay, standard algebraic notation, PGN import, move replay, captured pieces, and browser-local saved games.",
-      "Built evidence-based cross-game mistake detection, adaptive Decision Lab scheduling, and a progress dashboard; tested the full PGN-to-personalized-training workflow and corrupt-game recovery with Playwright and CI.",
+      "Developed a React/TypeScript chess application with PGN import, move replay, and a 2,000-game IndexedDB library with safe legacy migration and JSON backup/restore.",
+      "Built evidence-based cross-game mistake detection, adaptive Decision Lab scheduling, and progress tracking; verified import-to-training reliability and recovery behavior with Playwright, Vitest, and Docker CI.",
     ],
     tech: [
       "Java",
