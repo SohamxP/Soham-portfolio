@@ -50,7 +50,7 @@ export const projects = [
     points: [
       "Implemented a Java/Spring Boot chess engine with negamax, alpha-beta pruning, quiescence search, and transposition caching; verified legal move generation against canonical perft counts and built reproducible search benchmarks.",
       "Developed a React/TypeScript interface supporting chess gameplay, standard algebraic notation, PGN import, move replay, captured pieces, and browser-local saved games.",
-      "Built cross-game Personal Mistake Patterns backed by verified Stockfish scores and legal-move evidence, with position-level review links and a spaced-repetition Decision Lab; validated with Java, Vitest, Playwright, Docker, and CI.",
+      "Built cross-game Personal Mistake Patterns backed by verified Stockfish scores and legal-move evidence, with position-level review links, adaptive Decision Lab scheduling, and a practice-progress dashboard; validated with Java, Vitest, Playwright, Docker, and CI.",
     ],
     tech: [
       "Java",
