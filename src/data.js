@@ -12,8 +12,8 @@ export const profile = {
 export const about = [
   'Computer Science student at the University of Texas at Arlington, interested in the engineering behind reliable products — the APIs, data models, and systems that make the interface work.',
   'I build across the stack with Java, Python, TypeScript, React, Next.js, PostgreSQL, and cloud services. I enjoy taking a feature all the way from an idea to something people can actually use.',
-  'At E-Sutra Technologies, I investigated production failures across APIs, authentication, SQL, and backend services, then tested fixes through the application and database layers.',
-  'Lately, I have been working on retrieval quality in CampusAI and a full-stack chess engine with a local, privacy-first game review and training experience.',
+  'During my summer 2026 internship at E-Sutra Technologies, I investigated production failures across APIs, authentication, SQL, and backend services, and validated fixes across the application and database layers.',
+  'Lately, I have been building PlySense, a chess improvement platform with a custom Java engine, local Stockfish game review, and private, adaptive training based on mistakes from your own games.',
 ];
 
 export const experience = [
@@ -22,7 +22,7 @@ export const experience = [
     initials: 'ES',
     title: 'Software Developer Intern',
     location: 'Mumbai, India',
-    type: 'Internship',
+    type: 'Completed internship',
     period: '06.2026 — 08.2026',
     duration: '3 months',
     points: [
@@ -40,21 +40,30 @@ export const education = {
   degree: 'B.S. in Computer Science · Minor in Mathematics',
   period: 'Expected 05.2028',
   location: 'Arlington, Texas',
-  details: ['GPA: 3.75 / 4.00 · Highest Honors', 'Data Structures & Algorithms, Database Systems, Operating Systems, Software Engineering'],
-  tags: ['Computer Science', 'Mathematics', 'Software Engineering'],
+  details: ['GPA: 3.75 / 4.00 · Highest Honors'],
+  coursework: [
+    'Data Structures & Algorithms',
+    'Object-Oriented Programming',
+    'Operating Systems',
+    'Database Systems',
+    'Computer Network Organization',
+    'Artificial Intelligence',
+    'Neural Networks & Deep Learning',
+  ],
 };
 
 export const projects = [
   {
     name: 'PlySense',
     subtitle: 'Chess engine & personal improvement platform',
-    period: '2026 — Present',
+    period: '10.2026 — 11.2026',
     status: 'Live',
     description: 'Play against a custom Java chess engine, review decisions with local Stockfish, and turn mistakes into spaced-recall practice.',
     points: [
-      'Built a Java search engine with legal move generation, alpha-beta pruning, iterative deepening, quiescence search, and transposition caching.',
-      'Developed a React and TypeScript interface with FIDE notation, private browser-based game storage, and move review.',
-      'Added mistake-pattern analysis and a Decision Lab for practicing better moves without an AI API or cloud account.',
+      'Implemented iterative deepening, negamax, alpha-beta pruning, quiescence search, and transposition tables; validated legal move generation against canonical perft positions.',
+      'Reduced median depth-2 search latency by 24–29% across three CI benchmarks (seven runs each) while preserving moves and scores.',
+      'Built React/Spring Boot gameplay, PGN import, local Stockfish review, mistake-pattern detection, and adaptive practice.',
+      'Moved game storage to IndexedDB (2,000-game capacity) with JSON backup/restore; tested with JUnit, Vitest, Playwright, and Docker CI.',
     ],
     tags: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Stockfish', 'Docker'],
     github: 'https://github.com/SohamxP/chess-engine',
@@ -68,9 +77,12 @@ export const projects = [
     points: [
       'Built a RAG retrieval pipeline with page-aware PDF chunking, pgvector, hybrid keyword/semantic search, and Cross-Encoder reranking.',
       'Measured retrieval on 42 labeled questions: 85.71% Recall@1, 97.62% Recall@5, and 0.900 MRR.',
-      'Built authenticated, course-scoped document management and asynchronous processing with Next.js and FastAPI.',
+      'Built asynchronous PDF ingestion, course-scoped document management, flashcard and quiz generation, mastery tracking, and authenticated ownership controls.',
+      'Added automated API, retrieval, PDF-processing, authentication, and generation tests with GitHub Actions CI.',
     ],
     tags: ['Next.js', 'Python', 'FastAPI', 'PostgreSQL', 'pgvector', 'RAG'],
+    github: 'https://github.com/SohamxP/campus-ai',
+    demo: 'https://campus-ai-peach.vercel.app',
   },
   {
     name: 'Hotel Management Platform',
@@ -80,9 +92,11 @@ export const projects = [
     points: [
       'Implemented manager and front-desk permissions, JWT authentication, and mobile reservation workflows.',
       'Prevented overlapping bookings using PostgreSQL/Prisma constraints and transactional reservation creation.',
-      'Integrated Stripe Checkout with verified webhooks and deployed the Dockerized API to Render.',
+      'Built database-backed reservation workflows with repository/service architecture and integration tests for authentication, booking conflicts, cancellation, and transaction rollback.',
+      'Integrated Stripe Checkout with signature-verified webhooks and deployed the Dockerized API to Render with Supabase PostgreSQL.',
     ],
     tags: ['React Native', 'Express', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe'],
+    github: 'https://github.com/SohamxP/hotel-management-app',
   },
   {
     name: 'RideWise',
@@ -105,11 +119,13 @@ export const stack = [
   { name: 'TypeScript', icon: 'typescript/typescript-original.svg' },
   { name: 'JavaScript', icon: 'javascript/javascript-original.svg' },
   { name: 'React', icon: 'react/react-original.svg' },
+  { name: 'Spring Boot', icon: 'spring/spring-original.svg' },
   { name: 'Next.js', icon: 'nextjs/nextjs-original.svg', invert: true },
   { name: 'Node.js', icon: 'nodejs/nodejs-original.svg' },
   { name: 'Express', icon: 'express/express-original.svg', invert: true },
   { name: 'FastAPI', icon: 'fastapi/fastapi-original.svg' },
   { name: 'PostgreSQL', icon: 'postgresql/postgresql-original.svg' },
+  { name: 'MySQL', icon: 'mysql/mysql-original.svg' },
   { name: 'Supabase', icon: 'supabase/supabase-original.svg' },
   { name: 'Firebase', icon: 'firebase/firebase-original.svg' },
   { name: 'Docker', icon: 'docker/docker-original.svg' },
