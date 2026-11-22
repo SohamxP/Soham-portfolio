@@ -20,6 +20,7 @@ export const experience = [
   {
     company: 'E-Sutra Technologies',
     initials: 'ES',
+    logo: 'https://e-sutra.com/api/settings/logo?type=light',
     title: 'Software Developer Intern',
     location: 'Mumbai, India',
     type: 'Completed internship',
@@ -37,6 +38,7 @@ export const experience = [
 export const education = {
   school: 'University of Texas at Arlington',
   initials: 'UTA',
+  logo: 'https://cdn.prod.web.uta.edu/-/media/project/website/hr/images/belonging-engagement/erg/new-initials-logo.jpg?hash=1F856F32B7DC6579C3BC4B0BBF4BE427&mw=1050&rev=d1570e2789914c5ebd799204e9fc54c5&revision=d1570e27-8991-4c5e-bd79-9204e9fc54c5',
   degree: 'B.S. in Computer Science · Minor in Mathematics',
   period: 'Expected 05.2028',
   location: 'Arlington, Texas',
@@ -57,7 +59,6 @@ export const projects = [
     name: 'PlySense',
     subtitle: 'Chess engine & personal improvement platform',
     period: '10.2026 — 11.2026',
-    status: 'Live',
     description: 'Play against a custom Java chess engine, review decisions with local Stockfish, and turn mistakes into spaced-recall practice.',
     points: [
       'Implemented iterative deepening, negamax, alpha-beta pruning, quiescence search, and transposition tables; validated legal move generation against canonical perft positions.',
