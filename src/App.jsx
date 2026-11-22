@@ -19,6 +19,7 @@ function Icon({ name, size = 16, ...props }) {
     terminal: <><rect x="2" y="3" width="20" height="18" rx="2"/><path d="m6 8 4 4-4 4M12 16h6"/></>,
     up: <path d="m6 14 6-6 6 6"/>,
     check: <path d="m5 12 4 4L19 6"/>,
+    demo: <><rect x="2.5" y="3.5" width="19" height="14" rx="2"/><path d="M8 21h8m-4-3.5V21m-2-13 5 3-5 3V8Z"/></>,
   };
   return <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>;
 }
@@ -56,6 +57,13 @@ function StackTile({ item }) {
   return <div className="stack-tile" tabIndex={0} role="img" aria-label={item.name} data-label={item.name}>
     {imageFailed ? <span className="stack-fallback" aria-hidden="true">{item.name === 'Codex' ? '✳' : item.name.slice(0, 2)}</span> : <img className={item.invert ? 'stack-invert' : ''} src={item.src || 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/' + item.icon} alt="" loading="lazy" onError={() => setImageFailed(true)}/>}
   </div>;
+}
+
+function OrganizationLogo({ name, initials, src, school = false }) {
+  const [failed, setFailed] = useState(false);
+  return <span className={`organization-logo ${school ? 'school-logo' : ''}`}>
+    {src && !failed ? <img src={src} alt="" loading="lazy" decoding="async" onError={() => setFailed(true)}/> : <span aria-label={`${name} initials`}>{initials}</span>}
+  </span>;
 }
 
 function Toolbar({ theme, setTheme, openSearch }) {
@@ -129,7 +137,7 @@ function App() {
     <main>
       <header className="intro" id="overview">
         <div className="intro-copy"><p className="identity-label">Hello, I'm</p><h1>{profile.name}</h1><p className="tagline">{profile.tagline}</p><p className="identity-role">{profile.headline}</p></div>
-        <img className="avatar" src="/profile.jpg" alt="Portrait of Soham Panchal" width="102" height="102" />
+        <img className="avatar" src="/profile.webp" loading="eager" decoding="async" fetchPriority="high" alt="Portrait of Soham Panchal" width="102" height="102" />
       </header>
 
       <Section title="Overview">
@@ -152,7 +160,7 @@ function App() {
         const panelId = 'experience-' + job.company.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return <article className="entry" key={job.company}>
           <button type="button" className="entry-toggle entry-top" aria-expanded={expanded} aria-controls={panelId} onClick={() => toggleEntry(job.company, 'experience')}>
-            <span className="organization-logo">{job.initials}</span>
+            <OrganizationLogo name={job.company} initials={job.initials} src={job.logo}/>
             <span className="entry-heading"><span className="entry-company">{job.company}</span><span className="entry-subtitle">{job.title}</span></span>
             <span className="entry-period-summary">{job.period}</span>
             <Icon className={'expand-chevron ' + (expanded ? 'is-expanded' : '')} name="chevron" size={17}/>
@@ -165,18 +173,21 @@ function App() {
         </article>;
       })}</Section>
 
-      <Section title="Education" id="education"><article className="entry"><div className="entry-top"><div className="organization-logo school-logo">{education.initials}</div><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><div className="coursework"><h4>Relevant Coursework</h4><Tags items={education.coursework}/></div></article></Section>
+      <Section title="Education" id="education"><article className="entry"><div className="entry-top"><OrganizationLogo name={education.school} initials={education.initials} src={education.logo} school/><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><div className="coursework"><h4>Relevant Coursework</h4><Tags items={education.coursework}/></div></article></Section>
 
       <Section title="Projects" count={projects.length} id="projects"><div className="projects-list">{visibleProjects.map((project, i) => {
         const expanded = expandedProjects.has(project.name);
         const slug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return <article className="entry project-entry" id={slug} key={project.name}>
-          <button type="button" className="project-toggle project-header" aria-expanded={expanded} aria-controls={slug + '-details'} onClick={() => toggleEntry(project.name, 'project')}>
-            <span><span className="project-title-row"><span className="project-heading">{project.name}</span>{project.status && <span className="live-pill"><i/>{project.status}</span>}</span><span className="project-subtitle">{project.subtitle}</span></span>
-            <span className="project-header-right"><span className="project-index">0{i+1} / 0{projects.length}</span><Icon className={'expand-chevron ' + (expanded ? 'is-expanded' : '')} name="chevron" size={17}/></span>
-          </button>
+          <div className="project-header">
+            <button type="button" className="project-toggle" aria-expanded={expanded} aria-controls={`${slug}-details`} onClick={() => toggleEntry(project.name, 'project')}>
+              <span><span className="project-title-row"><span className="project-heading">{project.name}</span></span><span className="project-subtitle">{project.subtitle}</span></span>
+              <span className="project-header-right"><span className="project-index">0{i+1} / 0{projects.length}</span><Icon className={`expand-chevron ${expanded ? 'is-expanded' : ''}`} name="chevron" size={17}/></span>
+            </button>
+            {project.demo ? <ExternalLink href={project.demo} className="project-demo-link"><Icon name="demo" size={14}/> Live Demo <Icon name="arrow" size={12}/></ExternalLink> : <span className="project-demo-unavailable" title="No public live demo is available" aria-label="Live Demo unavailable"><Icon name="demo" size={14}/> Live Demo</span>}
+          </div>
           <div className="entry-expandable" id={slug + '-details'} hidden={!expanded}>
-            <div className="facts project-facts"><div><span>Period</span><strong>{project.period}</strong></div><div><span>Links</span><div className="project-links">{project.github && <ExternalLink href={project.github}><Icon name="github" size={14}/> GitHub <Icon name="arrow" size={12}/></ExternalLink>}{project.demo && <ExternalLink href={project.demo}><Icon name="arrow" size={14}/> Live demo</ExternalLink>}{!project.github && !project.demo && <strong className="muted-strong">Code not public</strong>}</div></div></div>
+            <div className="facts project-facts"><div><span>Period</span><strong>{project.period}</strong></div><div><span>Links</span><div className="project-links">{project.github && <ExternalLink href={project.github}><Icon name="github" size={14}/> GitHub <Icon name="arrow" size={12}/></ExternalLink>}{!project.github && !project.demo && <strong className="muted-strong">Code not public</strong>}</div></div></div>
             <p className="project-description">{project.description}</p><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={project.tags}/>
           </div>
         </article>;
