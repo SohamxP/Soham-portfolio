@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { about, education, experience, profile, projects, stack } from './data';
+import { about, aiTools, education, experience, profile, projects, stack } from './data';
 import GitHubContributions from './GitHubContributions';
 
 function Icon({ name, size = 16, ...props }) {
@@ -36,6 +36,26 @@ function Section({ id, title, count, children }) {
 
 function Tags({ items }) {
   return <div className="tags">{items.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>;
+}
+
+
+const internshipIcons = {
+  'REST APIs': <><path d="m7 7-4 5 4 5M17 7l4 5-4 5M14 4 10 20"/></>,
+  SQL: <><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></>,
+  Authentication: <><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3"/></>,
+  Testing: <><path d="m5 12 4 4L19 6"/><path d="M12 2a10 10 0 1 0 10 10"/></>,
+  Backend: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M7 6h.01M11 6h.01M8 14l-2 2 2 2M16 14l2 2-2 2"/></>,
+};
+
+function InternshipStack({ items }) {
+  return <div className="internship-stack" aria-label="Internship work areas">{items.map(item => <span className="internship-chip" key={item}><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{internshipIcons[item]}</svg>{item}</span>)}</div>;
+}
+
+function StackTile({ item }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  return <div className="stack-tile" tabIndex={0} role="img" aria-label={item.name} data-label={item.name}>
+    {imageFailed ? <span className="stack-fallback" aria-hidden="true">{item.name === 'Codex' ? '✳' : item.name.slice(0, 2)}</span> : <img className={item.invert ? 'stack-invert' : ''} src={item.src || 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/' + item.icon} alt="" loading="lazy" onError={() => setImageFailed(true)}/>}
+  </div>;
 }
 
 function Toolbar({ theme, setTheme, openSearch }) {
@@ -91,6 +111,12 @@ function App() {
   const [theme, setTheme] = useState(() => { try { return localStorage.getItem('portfolio-theme') || 'light'; } catch { return 'light'; } });
   const [searchOpen, setSearchOpen] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(true);
+  const [expandedProjects, setExpandedProjects] = useState(() => new Set([projects[0]?.name]));
+  const [expandedExperience, setExpandedExperience] = useState(() => new Set([experience[0]?.company]));
+  function toggleEntry(name, kind) {
+    const change = previous => { const next = new Set(previous); if (next.has(name)) next.delete(name); else next.add(name); return next; };
+    if (kind === 'project') setExpandedProjects(change); else setExpandedExperience(change);
+  }
   const [copied, setCopied] = useState(false);
   useEffect(() => { document.documentElement.dataset.theme = theme; try { localStorage.setItem('portfolio-theme', theme); } catch { /* storage optional */ } }, [theme]);
   useEffect(() => { const handler = e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {e.preventDefault(); setSearchOpen(s => !s);} if (e.key === 'Escape') setSearchOpen(false); }; window.addEventListener('keydown', handler); return () => window.removeEventListener('keydown', handler); }, []);
@@ -108,7 +134,7 @@ function App() {
 
       <Section title="Overview">
         <div className="overview-card">
-          <div className="overview-roles"><div className="overview-row"><span className="overview-icon"><Icon name="terminal" size={17}/></span><span>Former Software Developer Intern <span className="subtle">@ E-Sutra Technologies</span></span></div><div className="overview-row"><span className="overview-icon"><Icon name="file" size={17}/></span><span>Computer Science <span className="subtle">@ UT Arlington</span></span></div></div>
+          <div className="overview-roles"><div className="overview-row"><span className="overview-icon"><Icon name="terminal" size={17}/></span><span>Former Software Developer Intern <span className="subtle">@ E-Sutra Technologies</span></span></div><div className="overview-row"><span className="overview-icon"><Icon name="file" size={17}/></span><span>Computer Science · Mathematics Minor <span className="subtle">@ UT Arlington</span></span></div></div>
           <div className="overview-details"><div><Icon name="map" size={15}/><span>{profile.location}</span></div><div><Icon name="clock" size={15}/><span>{localTime}</span></div><div><Icon name="mail" size={15}/><button type="button" className="inline-button" onClick={copyEmail}>{copied ? 'Email copied!' : profile.email} {copied && <Icon name="check" size={14}/>}</button></div><div><Icon name="file" size={15}/><ExternalLink href={profile.resume}>View resume <Icon name="arrow" size={13}/></ExternalLink></div></div>
         </div>
       </Section>
@@ -119,13 +145,42 @@ function App() {
 
       <Section title="GitHub Contributions" id="contributions"><GitHubContributions/></Section>
 
-      <Section title="Stack" id="stack"><div className="stack-grid">{stack.map(item => <div className="stack-tile" title={item.name} key={item.name}><img className={item.invert ? 'stack-invert' : ''} src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.icon}`} alt="" loading="lazy"/><span>{item.name}</span></div>)}</div></Section>
+      <Section title="Stack" id="stack"><div className="stack-grid">{stack.map(item => <StackTile item={item} key={item.name}/>)}</div><h3 className="stack-subheading">AI Tools</h3><div className="stack-grid stack-tools-grid">{aiTools.map(item => <StackTile item={item} key={item.name}/>)}</div></Section>
 
-      <Section title="Experience" id="experience">{experience.map(job => <article className="entry" key={job.company}><div className="entry-top"><div className="organization-logo">{job.initials}</div><div className="entry-heading"><h3>{job.company}</h3><p>{job.title}</p></div></div><div className="facts"><div><span>Employment Type</span><strong>{job.type}</strong></div><div><span>Employment Period</span><strong>{job.period}</strong></div><div><span>Duration</span><strong>{job.duration}</strong></div></div><ul className="detail-list">{job.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={job.tags}/></article>)}</Section>
+      <Section title="Experience" id="experience">{experience.map(job => {
+        const expanded = expandedExperience.has(job.company);
+        const panelId = 'experience-' + job.company.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return <article className="entry" key={job.company}>
+          <button type="button" className="entry-toggle entry-top" aria-expanded={expanded} aria-controls={panelId} onClick={() => toggleEntry(job.company, 'experience')}>
+            <span className="organization-logo">{job.initials}</span>
+            <span className="entry-heading"><span className="entry-company">{job.company}</span><span className="entry-subtitle">{job.title}</span></span>
+            <span className="entry-period-summary">{job.period}</span>
+            <Icon className={'expand-chevron ' + (expanded ? 'is-expanded' : '')} name="chevron" size={17}/>
+          </button>
+          <div id={panelId} hidden={!expanded} className="entry-expandable">
+            <div className="facts"><div><span>Employment Type</span><strong>{job.type}</strong></div><div><span>Employment Period</span><strong>{job.period}</strong></div><div><span>Duration</span><strong>{job.duration}</strong></div></div>
+            <ul className="detail-list">{job.points.map(point => <li key={point}>{point}</li>)}</ul>
+            <InternshipStack items={job.tags}/>
+          </div>
+        </article>;
+      })}</Section>
 
       <Section title="Education" id="education"><article className="entry"><div className="entry-top"><div className="organization-logo school-logo">{education.initials}</div><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><div className="coursework"><h4>Relevant Coursework</h4><Tags items={education.coursework}/></div></article></Section>
 
-      <Section title="Projects" count={projects.length} id="projects"><div className="projects-list">{visibleProjects.map((project, i) => <article className="entry project-entry" id={project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')} key={project.name}><div className="project-header"><div><div className="project-title-row"><h3>{project.name}</h3>{project.status && <span className="live-pill"><i/>{project.status}</span>}</div><p className="project-subtitle">{project.subtitle}</p></div><span className="project-index">0{i+1} / 0{projects.length}</span></div><div className="facts project-facts"><div><span>Period</span><strong>{project.period}</strong></div><div><span>Links</span><div className="project-links">{project.github && <ExternalLink href={project.github}><Icon name="github" size={14}/> GitHub <Icon name="arrow" size={12}/></ExternalLink>}{project.demo && <ExternalLink href={project.demo}><Icon name="arrow" size={14}/> Live demo</ExternalLink>}{!project.github && !project.demo && <strong className="muted-strong">Code not public</strong>}</div></div></div><p className="project-description">{project.description}</p><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={project.tags}/></article>)}</div>{projects.length > 2 && <button type="button" className="show-more" onClick={() => setShowAllProjects(s => !s)}>{showAllProjects ? 'Show fewer projects' : `Show all ${projects.length} projects`}<Icon name="chevron" size={16} style={{ transform: showAllProjects ? 'rotate(180deg)' : 'none' }}/></button>}</Section>
+      <Section title="Projects" count={projects.length} id="projects"><div className="projects-list">{visibleProjects.map((project, i) => {
+        const expanded = expandedProjects.has(project.name);
+        const slug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return <article className="entry project-entry" id={slug} key={project.name}>
+          <button type="button" className="project-toggle project-header" aria-expanded={expanded} aria-controls={slug + '-details'} onClick={() => toggleEntry(project.name, 'project')}>
+            <span><span className="project-title-row"><span className="project-heading">{project.name}</span>{project.status && <span className="live-pill"><i/>{project.status}</span>}</span><span className="project-subtitle">{project.subtitle}</span></span>
+            <span className="project-header-right"><span className="project-index">0{i+1} / 0{projects.length}</span><Icon className={'expand-chevron ' + (expanded ? 'is-expanded' : '')} name="chevron" size={17}/></span>
+          </button>
+          <div className="entry-expandable" id={slug + '-details'} hidden={!expanded}>
+            <div className="facts project-facts"><div><span>Period</span><strong>{project.period}</strong></div><div><span>Links</span><div className="project-links">{project.github && <ExternalLink href={project.github}><Icon name="github" size={14}/> GitHub <Icon name="arrow" size={12}/></ExternalLink>}{project.demo && <ExternalLink href={project.demo}><Icon name="arrow" size={14}/> Live demo</ExternalLink>}{!project.github && !project.demo && <strong className="muted-strong">Code not public</strong>}</div></div></div>
+            <p className="project-description">{project.description}</p><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={project.tags}/>
+          </div>
+        </article>;
+      })}</div>{projects.length > 2 && <button type="button" className="show-more" onClick={() => setShowAllProjects(s => !s)}>{showAllProjects ? 'Show fewer projects' : 'Show all ' + projects.length + ' projects'}<Icon name="chevron" size={16} style={{ transform: showAllProjects ? 'rotate(180deg)' : 'none' }}/></button>}</Section>
 
       <footer className="footer"><div><p>Built by <strong>Soham Panchal</strong>.</p><p className="footer-note">React, a little CSS, and a lot of iteration.</p></div><div className="footer-actions"><a href={`mailto:${profile.email}`}>Email</a><ExternalLink href={profile.github}>GitHub</ExternalLink><ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink><button type="button" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} title="Scroll to top" aria-label="Scroll to top"><Icon name="up" size={18}/></button></div></footer>
     </main>
