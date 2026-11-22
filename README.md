@@ -1,16 +1,17 @@
-# Soham Panchal — portfolio
+# Soham Panchal — Portfolio
 
-A personal portfolio built with React, Vite, and CSS, redesigned independently from scratch in a minimal résumé-style layout inspired by [krishpinto.co.in](https://www.krishpinto.co.in/). No source code, text, or image assets were copied from the reference site.
+Personal portfolio built with React, Vite, and CSS. A minimal, responsive site highlighting my experience, education, projects, and technical stack.
 
 ## Features
 
-- Mobile-friendly compact portfolio layout and light/dark themes
+- Responsive layout with light and dark themes
 - Searchable command palette (`Cmd+K` / `Ctrl+K`)
-- Updated internship, education, and project summaries
-- Links to the verified public PlySense and RideWise repositories and the live chess project
-- GitHub contributions display via a third-party image service (subject to that service's availability)
-- Project source links only when verified; CampusAI and Hotel Management Platform have no public repository link
-- Existing portrait photo and a résumé link
+- Expandable experience and project sections
+- Technology and AI-tool icons
+- GitHub contributions calendar with grayscale activity levels and daily contribution details
+- Education, including my Mathematics minor and relevant coursework
+- Public repositories for PlySense, CampusAI, Hotel Management Platform, and RideWise
+- Live demos where available, along with my résumé and contact links
 
 ## Run locally
 
@@ -19,13 +20,13 @@ npm ci
 npm run dev
 ```
 
-Production build:
+Production checks:
 
 ```bash
 npm run build
 npm run lint
 ```
 
-The site is a static Vite app. Deploy the repository to a Vite-compatible static host with build command `npm run build` and publish directory `dist`.
+The site is a static Vite app. Deploy it to a Vite-compatible static host with build command `npm run build` and publish directory `dist`.
 
-Portfolio content is maintained in `src/data.js`, layout and interactions in `src/App.jsx`, and theme/responsive styling in `src/index.css`.
+Portfolio content lives in `src/data.js`; layout and interactions are in `src/App.jsx`; styles are in `src/index.css`.
