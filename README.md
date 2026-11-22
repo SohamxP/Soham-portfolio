@@ -1,217 +1,31 @@
-# Soham Panchal — Software Developer Portfolio
+# Soham Panchal — portfolio
 
-A responsive personal portfolio showcasing my software development experience, selected projects, technical skills, and academic background.
+A personal portfolio built with React, Vite, and CSS, redesigned independently from scratch in a minimal résumé-style layout inspired by [krishpinto.co.in](https://www.krishpinto.co.in/). No source code, text, or image assets were copied from the reference site.
 
-The site is designed to present my work across application development, backend services, API integration, databases, testing, and system-level problem solving.
+## Features
 
-## Live Portfolio
+- Mobile-friendly compact portfolio layout and light/dark themes
+- Searchable command palette (`Cmd+K` / `Ctrl+K`)
+- Updated internship, education, and project summaries
+- Links to the verified public PlySense and RideWise repositories and the live chess project
+- GitHub contributions display via a third-party image service (subject to that service's availability)
+- Project source links only when verified; CampusAI and Hotel Management Platform have no public repository link
+- Existing portrait photo and a résumé link
 
-[View Portfolio](https://sohampanchal.netlify.app)
-
-## About the Portfolio
-
-This portfolio highlights:
-
-* Professional software development experience
-* Selected full-stack, mobile, and backend projects
-* Technical skills and development tools
-* Education and academic background
-* Resume and contact links
-* Responsive layouts for desktop, tablet, and mobile devices
-
-## Featured Sections
-
-### Hero
-
-Introduces my software development focus, personal brand, resume, and contact links.
-
-### About
-
-Explains my approach to building reliable software across application, backend, API, and database layers.
-
-### Experience
-
-Highlights my completed Software Developer Internship at E-Sutra Technologies, including cross-layer debugging, backend improvements, data validation, API reliability, and regression testing.
-
-### Projects
-
-Features selected projects such as:
-
-* **PlySense** — Local-first chess improvement platform with a custom Java/Spring Boot AI, canonical perft tests, measured Java search optimization, a 2,000-game IndexedDB library with JSON backup/restore, and adaptive mistake-based training ([try PlySense](https://openfile-chess.onrender.com/))
-* **CampusAI** — RAG-based academic productivity platform with hybrid retrieval and reranking
-* **Hotel Management Platform** — Full-stack hotel operations platform with RBAC, PostgreSQL, Prisma, and Stripe
-* **RideWise** — Android ML ride-decision platform using XGBoost and traffic-aware routing
-
-### Skills
-
-Organized into:
-
-* Languages
-* Frameworks & Libraries
-* Data & AI
-* Testing & DevOps
-* Cloud & APIs
-* Core Engineering
-
-### Education
-
-Includes my Honors B.S. in Computer Science, Mathematics minor, GPA, and expected graduation at the University of Texas at Arlington.
-
-## Built With
-
-* React
-* JavaScript
-* Vite
-* CSS
-* HTML
-
-## Key Features
-
-* Responsive desktop and mobile layouts
-* Mobile navigation menu
-* Interactive project and experience cards
-* Scroll-based reveal animations
-* Featured project layout
-* Resume access
-* Social and contact links
-* Reusable data-driven sections
-* Accessible reduced-motion support
-
-## Project Structure
-
-```text
-soham-portfolio/
-├── public/
-│   ├── profile.jpg
-│   └── resume.pdf
-├── src/
-│   ├── App.jsx
-│   ├── data.js
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── package-lock.json
-├── eslint.config.js
-├── vite.config.js
-└── README.md
-```
-
-## Getting Started
-
-### Prerequisites
-
-Install:
-
-* Node.js
-* npm
-
-### Installation
-
-Clone the repository:
+## Run locally
 
 ```bash
-git clone https://github.com/SohamxP/soham-portfolio.git
-```
-
-Move into the project directory:
-
-```bash
-cd soham-portfolio
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
+npm ci
 npm run dev
 ```
 
-Open the local URL displayed by Vite in your browser.
-
-## Available Scripts
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Create a production build:
+Production build:
 
 ```bash
 npm run build
-```
-
-Preview the production build:
-
-```bash
-npm run preview
-```
-
-Run ESLint:
-
-```bash
 npm run lint
 ```
 
-## Updating Portfolio Content
+The site is a static Vite app. Deploy the repository to a Vite-compatible static host with build command `npm run build` and publish directory `dist`.
 
-Most portfolio content is stored in:
-
-```text
-src/data.js
-```
-
-Update this file to change:
-
-* Profile details
-* Experience
-* Projects
-* Skills
-* Education
-* Resume path
-* GitHub and LinkedIn links
-
-The main layout and components are located in:
-
-```text
-src/App.jsx
-```
-
-The global design and responsive styles are located in:
-
-```text
-src/index.css
-```
-
-## Public Assets
-
-The profile picture must be placed at:
-
-```text
-public/profile.jpg
-```
-
-The resume must be placed at:
-
-```text
-public/resume.pdf
-```
-
-## Contact
-
-**Soham Panchal**
-
-* GitHub: [SohamxP](https://github.com/SohamxP)
-* LinkedIn: [Soham Panchal](https://linkedin.com/in/soham-panchal/)
-* Email: [work.panchalsoham@gmail.com](mailto:work.panchalsoham@gmail.com)
-
-## License
-
-This project is intended for personal portfolio use. The source code may be referenced for learning purposes, but the design, written content, personal information, and project materials should not be copied or presented as someone else’s work.
+Portfolio content is maintained in `src/data.js`, layout and interactions in `src/App.jsx`, and theme/responsive styling in `src/index.css`.
