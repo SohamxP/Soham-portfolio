@@ -133,3 +133,9 @@ export const stack = [
   { name: 'GitHub', icon: 'github/github-original.svg', invert: true },
   { name: 'Google Cloud', icon: 'googlecloud/googlecloud-original.svg' },
 ];
+// Tool icons are visual identifiers, not a claim of endorsement or partnership.
+export const aiTools = [
+  { name: 'Codex', src: 'https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/openai.svg', invert: true },
+  { name: 'Claude', src: 'https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/claude.svg', invert: true },
+  { name: 'Gemini', src: 'https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/googlegemini.svg', invert: true },
+];
