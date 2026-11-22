@@ -1,461 +1,134 @@
-import { useEffect, useState } from "react";
-import { education, experience, profile, projects, skills } from "./data";
+import { useEffect, useRef, useState } from 'react';
+import { about, education, experience, profile, projects, stack } from './data';
 
-const Icon = ({ name, size = 20 }) => {
+function Icon({ name, size = 16, ...props }) {
   const paths = {
-    github: (
-      <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.14a9.3 9.3 0 0 1 2.5.35c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.95-2.35 4.82-4.58 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
-    ),
-    linkedin: (
-      <path d="M6.5 8.5H3.2V21h3.3V8.5ZM4.85 3A1.93 1.93 0 1 0 4.85 6.86 1.93 1.93 0 0 0 4.85 3ZM21 13.83c0-3.77-2.01-5.52-4.7-5.52-2.16 0-3.13 1.2-3.67 2.04V8.5H9.32V21h3.31v-6.19c0-1.63.31-3.21 2.31-3.21 1.97 0 2 1.86 2 3.32V21H21v-7.17Z" />
-    ),
-    mail: (
-      <path d="M3 5h18v14H3V5Zm2 2v.3l7 5.1 7-5.1V7H5Zm14 10V9.76l-7 5.1-7-5.1V17h14Z" />
-    ),
-    briefcase: (
-      <path d="M9 5V3h6v2h5a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5Zm2 0h2V4h-2v1Zm9 6H4v7h16v-7Zm0-4H4v2h16V7Z" />
-    ),
-    graduation: (
-      <path d="m12 3 10 5-4 2v5.5c0 1.8-2.7 4.5-6 4.5s-6-2.7-6-4.5V10L2 8l10-5Zm0 2.24L6.48 8 12 10.76 17.52 8 12 5.24ZM8 11v4.5c0 .72 1.68 2.5 4 2.5s4-1.78 4-2.5V11l-4 2-4-2Z" />
-    ),
-    arrow: <path d="M7 17 17 7M9 7h8v8" />,
-    menu: <path d="M4 7h16M4 12h16M4 17h16" />,
-    close: <path d="m6 6 12 12M18 6 6 18" />,
-    file: (
-      <path d="M6 2h8l4 4v16H6V2Zm8 2.5V8h3.5L14 4.5ZM8 11v2h8v-2H8Zm0 4v2h8v-2H8Z" />
-    ),
+    search: <><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></>,
+    sun: <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></>,
+    moon: <path d="M20.9 13A9 9 0 0 1 11 3.1a9 9 0 1 0 9.9 9.9Z"/>,
+    github: <><path d="M9 19c-4 1.3-4-2-5.5-2.5M15 22v-3.3a2.9 2.9 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6A4.7 4.7 0 0 0 18.4 7a4.3 4.3 0 0 0-.1-3.5s-1 0-3.5 1.8a12 12 0 0 0-6.6 0C5.7 3.5 4.7 3.5 4.7 3.5A4.3 4.3 0 0 0 4.6 7a4.7 4.7 0 0 0-1.3 3.4c0 4.7 2.8 5.7 5.5 6A2.9 2.9 0 0 0 8 18.7V22"/></>,
+    linkedin: <><rect x="3" y="8" width="4" height="13" rx=".5"/><path d="M5 3v.1M11 21V8h4v2a4 4 0 0 1 7 2.6V21h-4v-8a2 2 0 0 0-4 0v8Z"/></>,
+    mail: <><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></>,
+    map: <><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></>,
+    clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></>,
+    arrow: <><path d="M5 19 19 5M9 5h10v10"/></>,
+    chevron: <path d="m6 9 6 6 6-6"/>,
+    close: <path d="M5 5 19 19M19 5 5 19"/>,
+    file: <><path d="M7 2h7l5 5v15H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v6h5M9 12h6M9 16h6"/></>,
+    terminal: <><rect x="2" y="3" width="20" height="18" rx="2"/><path d="m6 8 4 4-4 4M12 16h6"/></>,
+    up: <path d="m6 14 6-6 6 6"/>,
+    check: <path d="m5 12 4 4L19 6"/>,
   };
+  return <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>;
+}
 
-  const outlineIcons = ["arrow", "menu", "close"];
-  const isOutlineIcon = outlineIcons.includes(name);
+function ExternalLink({ href, children, className = '' }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>;
+}
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill={isOutlineIcon ? "none" : "currentColor"}
-      stroke="currentColor"
-      strokeWidth={isOutlineIcon ? 1.8 : 0}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {paths[name]}
-    </svg>
-  );
-};
+function Section({ id, title, count, children }) {
+  return <section className="section" id={id}>
+    <h2 className="section-title">{title}{count != null && <span className="count">({count})</span>}</h2>
+    {children}
+  </section>;
+}
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+function Tags({ items }) {
+  return <div className="tags">{items.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>;
+}
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <header className="navbar">
-      <a href="#home" className="logo" onClick={closeMenu}>
-        SP<span>.</span>
-      </a>
-
-      <button
-        className="menu-button"
-        type="button"
-        onClick={() => setIsOpen((currentValue) => !currentValue)}
-        aria-label="Toggle navigation"
-        aria-expanded={isOpen}
-      >
-        <Icon name={isOpen ? "close" : "menu"} size={24} />
+function Toolbar({ theme, setTheme, openSearch }) {
+  return <nav className="toolbar" aria-label="Portfolio controls">
+    <button type="button" className="search-trigger" onClick={openSearch} aria-label="Search portfolio (Command K)">
+      <Icon name="search" size={16}/><span>Search...</span><kbd>⌘ K</kbd>
+    </button>
+    <div className="toolbar-right">
+      <ExternalLink href={profile.github} className="toolbar-icon" ><Icon name="github" size={17}/><span className="sr-only">GitHub</span></ExternalLink>
+      <span className="toolbar-separator"/>
+      <button type="button" className="toolbar-icon" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title="Toggle color theme">
+        <Icon name={theme === 'light' ? 'moon' : 'sun'} size={17}/>
       </button>
+    </div>
+  </nav>;
+}
 
-      <nav className={isOpen ? "nav-open" : ""}>
-        <a href="#about" onClick={closeMenu}>
-          About
-        </a>
+const searchItems = [
+  { name: 'Overview', hint: 'Introduction and contact', url: '#overview' },
+  { name: 'About', hint: 'Background and interests', url: '#about' },
+  { name: 'GitHub Contributions', hint: 'My activity on GitHub', url: '#contributions' },
+  { name: 'Stack', hint: 'Technologies I work with', url: '#stack' },
+  { name: 'Experience', hint: 'E-Sutra Technologies', url: '#experience' },
+  { name: 'Education', hint: 'University of Texas at Arlington', url: '#education' },
+  { name: 'Projects', hint: 'Selected work', url: '#projects' },
+  ...projects.map(p => ({ name: p.name, hint: p.subtitle, url: `#${p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` })),
+  { name: 'View Resume', hint: 'Open PDF', url: profile.resume, external: true },
+  { name: 'Email Me', hint: profile.email, url: `mailto:${profile.email}`, external: true },
+];
 
-        <a href="#experience" onClick={closeMenu}>
-          Experience
-        </a>
-
-        <a href="#projects" onClick={closeMenu}>
-          Projects
-        </a>
-
-        <a href="#skills" onClick={closeMenu}>
-          Skills
-        </a>
-
-        <a href="#contact" onClick={closeMenu}>
-          Contact
-        </a>
-      </nav>
-    </header>
-  );
+function CommandPalette({ onClose }) {
+  const [query, setQuery] = useState('');
+  const [selected, setSelected] = useState(0);
+  const inputRef = useRef(null);
+  const filtered = searchItems.filter(i => `${i.name} ${i.hint}`.toLowerCase().includes(query.toLowerCase()));
+  useEffect(() => { inputRef.current?.focus(); document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = ''; }; }, []);
+  function activate(item) {
+    if (!item) return;
+    onClose();
+    if (item.external) window.open(item.url, item.url.startsWith('mailto:') ? '_self' : '_blank', 'noopener,noreferrer');
+    else { window.location.hash = item.url; }
+  }
+  return <div className="dialog-backdrop" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) onClose(); }}>
+    <div className="command-dialog" role="dialog" aria-modal="true" aria-label="Search portfolio">
+      <div className="command-search"><Icon name="search" size={20}/><input ref={inputRef} value={query} onChange={e => {setQuery(e.target.value); setSelected(0);}} onKeyDown={e => {if(e.key === 'ArrowDown'){e.preventDefault();setSelected(v=>Math.min(v+1,filtered.length-1));}if(e.key === 'ArrowUp'){e.preventDefault();setSelected(v=>Math.max(0,v-1));}if(e.key === 'Enter') activate(filtered[selected]);if(e.key === 'Escape') onClose();}} placeholder="Search for a command..." aria-label="Search commands"/><button type="button" onClick={onClose} aria-label="Close search"><Icon name="close" size={17}/></button></div>
+      <div className="command-results"><p className="command-label">Jump to</p>{filtered.length ? filtered.map((item, i) => <button type="button" key={item.name} className={`command-item ${i === selected ? 'selected' : ''}`} onMouseEnter={()=>setSelected(i)} onClick={()=>activate(item)}><Icon name={item.external ? 'arrow' : 'terminal'} size={16}/><span><strong>{item.name}</strong><small>{item.hint}</small></span><span className="command-action">↵</span></button>) : <p className="no-results">No matches found.</p>}</div>
+      <div className="command-footer">Navigate with ↑ ↓ <span>↵ Select</span><span>Esc Close</span></div>
+    </div>
+  </div>;
 }
 
 function App() {
-  useEffect(() => {
-    const elements = document.querySelectorAll(".reveal");
+  const [theme, setTheme] = useState(() => { try { return localStorage.getItem('portfolio-theme') || 'light'; } catch { return 'light'; } });
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(true);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => { document.documentElement.dataset.theme = theme; try { localStorage.setItem('portfolio-theme', theme); } catch { /* storage optional */ } }, [theme]);
+  useEffect(() => { const handler = e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {e.preventDefault(); setSearchOpen(s => !s);} if (e.key === 'Escape') setSearchOpen(false); }; window.addEventListener('keydown', handler); return () => window.removeEventListener('keydown', handler); }, []);
+  const localTime = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', hour12: false, timeZoneName: 'short' }).format(new Date());
+  async function copyEmail() { try { await navigator.clipboard.writeText(profile.email); setCopied(true); window.setTimeout(() => setCopied(false), 1600); } catch { window.location.href = `mailto:${profile.email}`; } }
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, 2);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
+  return <div className="page-shell">
+    <Toolbar theme={theme} setTheme={setTheme} openSearch={() => setSearchOpen(true)}/>
+    <main>
+      <header className="intro" id="overview">
+        <div className="intro-copy"><p className="identity-label">Hello, I'm</p><h1>{profile.name}</h1><p className="tagline">{profile.tagline}</p><p className="identity-role">{profile.headline}</p></div>
+        <img className="avatar" src="/profile.jpg" alt="Portrait of Soham Panchal" width="102" height="102" />
+      </header>
 
-          entry.target.classList.add("active");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.12,
-      },
-    );
-
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <main className="site">
-      <Navbar />
-
-      <section id="home" className="hero section">
-        <div className="hero-left">
-          <p className="eyebrow">Software Developer · Systems Thinker</p>
-
-            <p className="hero-name">Hi, I'm Soham Panchal</p>
-
-            <h1 className="hero-heading">
-              I build software that works beyond the interface.
-            </h1>
-
-          <p className="hero-summary">
-            I turn product requirements into reliable, production ready
-            systems, working across application logic, backend services, APIs,
-            and data to solve problems at their source.
-          </p>
-
-          <div className="hero-actions">
-            <a className="btn primary" href="#projects">
-              Explore My Work
-            </a>
-
-            <a
-              className="btn secondary"
-              href={profile.resume}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icon name="file" size={18} />
-              View Resume
-            </a>
-          </div>
-
-          <div className="hero-socials" aria-label="Social links">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-            >
-              <Icon name="github" />
-            </a>
-
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <Icon name="linkedin" />
-            </a>
-
-            <a href={`mailto:${profile.email}`} aria-label="Email">
-              <Icon name="mail" />
-            </a>
-          </div>
+      <Section title="Overview">
+        <div className="overview-card">
+          <div className="overview-roles"><div className="overview-row"><span className="overview-icon"><Icon name="terminal" size={17}/></span><span>Software Developer Intern <span className="subtle">@ E-Sutra Technologies</span></span></div><div className="overview-row"><span className="overview-icon"><Icon name="file" size={17}/></span><span>Computer Science <span className="subtle">@ UT Arlington</span></span></div></div>
+          <div className="overview-details"><div><Icon name="map" size={15}/><span>{profile.location}</span></div><div><Icon name="clock" size={15}/><span>{localTime}</span></div><div><Icon name="mail" size={15}/><button type="button" className="inline-button" onClick={copyEmail}>{copied ? 'Email copied!' : profile.email} {copied && <Icon name="check" size={14}/>}</button></div><div><Icon name="file" size={15}/><ExternalLink href={profile.resume}>View resume <Icon name="arrow" size={13}/></ExternalLink></div></div>
         </div>
+      </Section>
 
-        <div className="hero-right">
-          <div className="hero-visual">
-            <div className="hero-photo-wrap">
-              <img src="/profile.jpg" alt="Soham Panchal" />
-            </div>
-          </div>
+      <Section title="Social Links"><div className="socials"><ExternalLink href={profile.github} className="social-link"><Icon name="github" size={17}/>GitHub <Icon name="arrow" size={13}/></ExternalLink><ExternalLink href={profile.linkedin} className="social-link"><Icon name="linkedin" size={17}/>LinkedIn <Icon name="arrow" size={13}/></ExternalLink><a className="social-link" href={`mailto:${profile.email}`}><Icon name="mail" size={17}/>Email <Icon name="arrow" size={13}/></a><ExternalLink href={profile.resume} className="social-link"><Icon name="file" size={17}/>Resume <Icon name="arrow" size={13}/></ExternalLink></div></Section>
 
-          <div className="hero-info-card">
-            <p className="info-kicker">Based in</p>
-            <strong>{profile.location}</strong>
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-          </div>
-        </div>
-      </section>
+      <Section title="About" id="about"><ul className="about-list">{about.map(item => <li key={item}>{item}</li>)}</ul></Section>
 
-      <section id="about" className="section grid-section">
-        <div className="about-heading">
-          <p className="label">About</p>
+      <Section title="GitHub Contributions" id="contributions"><div className="contributions-card"><a href={`${profile.github}`} target="_blank" rel="noopener noreferrer" aria-label="Visit Soham's GitHub contributions"><img src="https://ghchart.rshah.org/737373/SohamxP" loading="lazy" alt="GitHub contribution chart for SohamxP" onError={e => {e.currentTarget.style.display='none';}}/></a><p>Activity on <ExternalLink href={profile.github}>github.com/SohamxP <Icon name="arrow" size={12}/></ExternalLink></p></div></Section>
 
-          <h2>I care about how the entire system behaves.</h2>
-        </div>
+      <Section title="Stack" id="stack"><div className="stack-grid">{stack.map(item => <div className="stack-tile" title={item.name} key={item.name}><img className={item.invert ? 'stack-invert' : ''} src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.icon}`} alt="" loading="lazy"/><span>{item.name}</span></div>)}</div></Section>
 
-        <div className="content-card about-card reveal">
-          <p className="about-lead">
-            I’m an Honors Computer Science student at the University of Texas at
-            Arlington, pursuing a minor in Mathematics and building across
-            backend systems, web and mobile applications, data, and applied AI.
-          </p>
+      <Section title="Experience" id="experience">{experience.map(job => <article className="entry" key={job.company}><div className="entry-top"><div className="organization-logo">{job.initials}</div><div className="entry-heading"><h3>{job.company}</h3><p>{job.title}</p></div></div><div className="facts"><div><span>Employment Type</span><strong>{job.type}</strong></div><div><span>Employment Period</span><strong>{job.period}</strong></div><div><span>Duration</span><strong>{job.duration}</strong></div></div><ul className="detail-list">{job.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={job.tags}/></article>)}</Section>
 
-          <p>
-            My strongest work begins where a simple implementation ends:
-            understanding how information moves through a system, identifying
-            the real source of failure, and building solutions that remain
-            reliable as requirements and complexity grow.
-          </p>
+      <Section title="Education" id="education"><article className="entry"><div className="entry-top"><div className="organization-logo school-logo">{education.initials}</div><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><Tags items={education.tags}/></article></Section>
 
-          <p>
-            Recent projects have pushed me deeper into machine learning,
-            retrieval systems, game-tree search, cloud deployment, testing,
-            and transactional backend design while keeping the focus on
-            complete, usable products.
-          </p>
+      <Section title="Projects" count={projects.length} id="projects"><div className="projects-list">{visibleProjects.map((project, i) => <article className="entry project-entry" id={project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')} key={project.name}><div className="project-header"><div><div className="project-title-row"><h3>{project.name}</h3>{project.status && <span className="live-pill"><i/>{project.status}</span>}</div><p className="project-subtitle">{project.subtitle}</p></div><span className="project-index">0{i+1} / 0{projects.length}</span></div><div className="facts project-facts"><div><span>Period</span><strong>{project.period}</strong></div><div><span>Links</span><div className="project-links">{project.github && <ExternalLink href={project.github}><Icon name="github" size={14}/> GitHub <Icon name="arrow" size={12}/></ExternalLink>}{project.demo && <ExternalLink href={project.demo}><Icon name="arrow" size={14}/> Live demo</ExternalLink>}{!project.github && !project.demo && <strong className="muted-strong">Code not public</strong>}</div></div></div><p className="project-description">{project.description}</p><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={project.tags}/></article>)}</div>{projects.length > 2 && <button type="button" className="show-more" onClick={() => setShowAllProjects(s => !s)}>{showAllProjects ? 'Show fewer projects' : `Show all ${projects.length} projects`}<Icon name="chevron" size={16} style={{ transform: showAllProjects ? 'rotate(180deg)' : 'none' }}/></button>}</Section>
 
-          <div className="about-strengths">
-            <span>Backend and data systems</span>
-            <span>Applied AI & machine learning</span>
-            <span>End-to-end product engineering</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" className="section">
-        <div className="section-heading">
-          <p className="label">Experience</p>
-          <h2>Professional Work</h2>
-        </div>
-
-        <div className="timeline">
-          {experience.map((item) => (
-            <article className="timeline-card reveal" key={item.title}>
-              <div className="icon-box">
-                <Icon name="briefcase" />
-              </div>
-
-              <div className="timeline-content">
-                <div className="row-between">
-                  <div>
-                    <h3>{item.title}</h3>
-
-                    <p className="muted">
-                      {item.company} · {item.location}
-                    </p>
-                  </div>
-
-                  <span className="date-badge">{item.date}</span>
-                </div>
-
-                <ul>
-                  {item.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-
-                <div className="impact-block">
-                  <span className="impact-label">Impact Areas</span>
-
-                  <div className="impact-tags">
-                    {item.impact.map((impact) => (
-                      <span key={impact}>{impact}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="projects" className="section">
-        <div className="section-heading section-heading-row">
-          <div>
-            <p className="label">Projects</p>
-            <h2>Selected Builds</h2>
-          </div>
-
-          <p className="section-note">
-            Products designed around real workflows, maintainable systems, and
-            practical engineering decisions.
-          </p>
-        </div>
-
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <article
-              className={`project-card reveal ${
-                project.featured ? "featured-project" : ""
-              }`}
-              key={project.name}
-            >
-              <div className="project-top">
-                <div>
-                  <div className="project-status-row">
-                    <span className="status-badge">{project.status}</span>
-                    <span className="project-date">{project.date}</span>
-                  </div>
-
-                  <h3>{project.name}</h3>
-                  <p className="project-subtitle">{project.subtitle}</p>
-                </div>
-              </div>
-
-              <p className="project-desc">{project.description}</p>
-
-              {project.highlights ? (
-                <div className="project-highlights">
-                  {project.highlights.map((highlight) => (
-                    <div key={highlight.label}>
-                      <span>{highlight.label}</span>
-                      <p>{highlight.value}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <ul>
-                  {project.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="tech-list">
-                {project.tech.map((technology) => (
-                  <span key={technology}>{technology}</span>
-                ))}
-              </div>
-
-              <div className="project-links">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View Code
-                    <Icon name="arrow" size={17} />
-                  </a>
-                )}
-
-                {project.demo && (
-                  <a href={project.demo} target="_blank" rel="noreferrer">
-                    Live Demo
-                    <Icon name="arrow" size={17} />
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="skills" className="section">
-        <div className="section-heading section-heading-row">
-          <div>
-            <p className="label">Skills</p>
-            <h2>Technical Foundation</h2>
-          </div>
-
-          <p className="section-note">
-            A focused stack for building, integrating, testing, and shipping
-            complete software systems.
-          </p>
-        </div>
-
-        <div className="skills-grid">
-          {skills.map((group, index) => (
-            <article className="skill-card reveal" key={group.category}>
-              <span className="skill-number">0{index + 1}</span>
-
-              <h3>{group.category}</h3>
-              <p>{group.description}</p>
-
-              <div className="skill-tags">
-                {group.items.map((skill) => (
-                  <span key={skill}>{skill}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="education" className="section">
-        <div className="section-heading">
-          <p className="label">Education</p>
-          <h2>Academic Background</h2>
-        </div>
-
-        {education.map((item) => (
-          <article className="education-card reveal" key={item.school}>
-            <div className="icon-box">
-              <Icon name="graduation" />
-            </div>
-
-            <div className="education-content">
-              <div className="row-between">
-                <div>
-                  <h3>{item.school}</h3>
-                  <p>{item.degree}</p>
-
-                  <p className="muted">
-                    {item.details} · {item.location}
-                  </p>
-                </div>
-
-                <span className="date-badge">{item.date}</span>
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section id="contact" className="section contact reveal">
-        <p className="label">Contact</p>
-
-        <h2>Let’s build something that matters.</h2>
-
-        <p>
-          I’m open to software engineering internships, development
-          opportunities, and ambitious technical projects.
-        </p>
-
-        <div className="hero-actions center">
-          <a className="btn primary" href={`mailto:${profile.email}`}>
-            Start a Conversation
-          </a>
-
-          <a
-            className="btn secondary"
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-            <Icon name="arrow" size={17} />
-          </a>
-        </div>
-      </section>
-
-      <footer>
-        <p>
-          © {new Date().getFullYear()} Soham Panchal. Designed and built with
-          care.
-        </p>
-      </footer>
+      <footer className="footer"><div><p>Built by <strong>Soham Panchal</strong>.</p><p className="footer-note">React, a little CSS, and a lot of iteration.</p></div><div className="footer-actions"><a href={`mailto:${profile.email}`}>Email</a><ExternalLink href={profile.github}>GitHub</ExternalLink><ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink><button type="button" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} title="Scroll to top" aria-label="Scroll to top"><Icon name="up" size={18}/></button></div></footer>
     </main>
-  );
+    {searchOpen && <CommandPalette onClose={() => setSearchOpen(false)}/>}
+  </div>;
 }
-
 export default App;
