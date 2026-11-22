@@ -137,7 +137,7 @@ function App() {
     <main>
       <header className="intro" id="overview">
         <div className="intro-copy"><p className="identity-label">Hello, I'm</p><h1>{profile.name}</h1><p className="tagline">{profile.tagline}</p><p className="identity-role">{profile.headline}</p></div>
-        <img className="avatar" src="/profile.webp" loading="eager" decoding="async" fetchPriority="high" alt="Portrait of Soham Panchal" width="102" height="102" />
+        <img className="avatar" src="/profile.jpg" loading="eager" decoding="async" fetchPriority="high" alt="Portrait of Soham Panchal" width="102" height="102" />
       </header>
 
       <Section title="Overview">
