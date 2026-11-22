@@ -10,7 +10,7 @@ A personal portfolio built with React, Vite, and CSS, redesigned independently f
 - Links to the verified public PlySense and RideWise repositories and the live chess project
 - GitHub contributions display via a third-party image service (subject to that service's availability)
 - Project source links only when verified; CampusAI and Hotel Management Platform have no public repository link
-- Updated résumé PDF and existing portrait photo
+- Existing portrait photo and a résumé link
 
 ## Run locally
 
