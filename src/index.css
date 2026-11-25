@@ -87,3 +87,25 @@
 .project-demo-link:focus-visible{outline:2px solid var(--foreground);outline-offset:4px;border-radius:3px}
 .project-demo-unavailable{opacity:.4;cursor:not-allowed}
 @media(max-width:470px){.project-header{gap:8px}.project-demo-link,.project-demo-unavailable{font-size:11px;gap:4px}.project-demo-link svg:last-child{display:none}.school-logo{flex-basis:60px;width:60px;height:56px}}
+
+/* Recognition within the existing education card */
+.education-recognition{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.recognition-label{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:10px}
+.recognition-row{display:flex;align-items:flex-start;gap:11px}
+.recognition-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--border);border-radius:7px;background:var(--soft);color:var(--foreground)}
+.recognition-content{min-width:0;flex:1}
+.recognition-content h4{font-size:13.5px;font-weight:600;margin:0 0 4px}
+.recognition-meta{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 5px}
+.recognition-description{font-size:13px;line-height:1.6;margin:0 0 7px}
+.certificate-link{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;padding:0;font:inherit;font-size:12px;color:var(--foreground);cursor:pointer}
+.certificate-link:hover{text-decoration:underline}
+.certificate-link:focus-visible,.certificate-close:focus-visible{outline:2px solid var(--muted);outline-offset:3px}
+.certificate-dialog{position:fixed;inset:0;margin:auto;padding:0;width:min(760px,calc(100% - 32px));max-width:none;max-height:calc(100% - 32px);overflow:auto;color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.certificate-dialog::backdrop{background:rgba(0,0,0,.7)}
+.certificate-dialog-inner{padding:16px}
+.certificate-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.certificate-dialog-header h3{font-size:15px;font-weight:600;margin:0}
+.certificate-close{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border:1px solid var(--border);border-radius:7px;background:var(--background);color:var(--foreground);cursor:pointer}
+.certificate-close:hover{background:var(--hover)}
+.certificate-image{display:block;width:100%;height:auto;max-height:calc(100dvh - 120px);object-fit:contain;border-radius:4px}
+@media(max-width:480px){.certificate-dialog-inner{padding:12px}.certificate-dialog-header h3{font-size:13px}.recognition-description{font-size:12.5px}}

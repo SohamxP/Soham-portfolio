@@ -18,6 +18,7 @@ function Icon({ name, size = 16, ...props }) {
     file: <><path d="M7 2h7l5 5v15H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v6h5M9 12h6M9 16h6"/></>,
     terminal: <><rect x="2" y="3" width="20" height="18" rx="2"/><path d="m6 8 4 4-4 4M12 16h6"/></>,
     up: <path d="m6 14 6-6 6 6"/>,
+    award: <><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9"/></>,
     check: <path d="m5 12 4 4L19 6"/>,
     demo: <><rect x="2.5" y="3.5" width="19" height="14" rx="2"/><path d="M8 21h8m-4-3.5V21m-2-13 5 3-5 3V8Z"/></>,
   };
@@ -33,6 +34,37 @@ function Section({ id, title, count, children }) {
     <h2 className="section-title">{title}{count != null && <span className="count">({count})</span>}</h2>
     {children}
   </section>;
+}
+
+function EducationRecognition({ recognition }) {
+  const dialogRef = useRef(null);
+
+  return <div className="education-recognition">
+    <span className="recognition-label">Recognition</span>
+    <div className="recognition-row">
+      <span className="recognition-icon"><Icon name="award" size={19}/></span>
+      <div className="recognition-content">
+        <h4>{recognition.title}</h4>
+        <p className="recognition-meta">{recognition.issuer} · {recognition.period}</p>
+        <p className="recognition-description">{recognition.description}</p>
+        <button type="button" className="certificate-link" onClick={() => dialogRef.current?.showModal()}>
+          <Icon name="file" size={14}/> View Certificate <Icon name="arrow" size={12}/>
+        </button>
+      </div>
+    </div>
+    <dialog ref={dialogRef} className="certificate-dialog" aria-labelledby="certificate-title"
+      onClick={(event) => { if (event.target === event.currentTarget) event.currentTarget.close(); }}>
+      <div className="certificate-dialog-inner">
+        <div className="certificate-dialog-header">
+          <h3 id="certificate-title">{recognition.title}</h3>
+          <button type="button" className="certificate-close" aria-label="Close certificate" onClick={() => dialogRef.current?.close()}>
+            <Icon name="close" size={20}/>
+          </button>
+        </div>
+        <img className="certificate-image" src={recognition.certificate} alt="UTA Learning Resource Center Tutor of the Month, Tutor Choice certificate for Soham Panchal, October/November 2026, awarded November 20, 2026" loading="lazy"/>
+      </div>
+    </dialog>
+  </div>;
 }
 
 function Tags({ items }) {
@@ -173,7 +205,7 @@ function App() {
         </article>;
       })}</Section>
 
-      <Section title="Education" id="education"><article className="entry"><div className="entry-top"><OrganizationLogo name={education.school} initials={education.initials} src={education.logo} school/><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><div className="coursework"><h4>Relevant Coursework</h4><Tags items={education.coursework}/></div></article></Section>
+      <Section title="Education" id="education"><article className="entry"><div className="entry-top"><OrganizationLogo name={education.school} initials={education.initials} src={education.logo} school/><div className="entry-heading"><h3>{education.school}</h3><p>{education.degree}</p></div></div><div className="facts"><div><span>Period</span><strong>{education.period}</strong></div><div><span>Location</span><strong>{education.location}</strong></div></div><ul className="detail-list">{education.details.map(point => <li key={point}>{point}</li>)}</ul><div className="coursework"><h4>Relevant Coursework</h4><Tags items={education.coursework}/></div><EducationRecognition recognition={education.recognition}/></article></Section>
 
       <Section title="Projects" count={projects.length} id="projects"><div className="projects-list">{visibleProjects.map((project, i) => {
         const expanded = expandedProjects.has(project.name);

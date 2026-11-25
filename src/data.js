@@ -43,6 +43,13 @@ export const education = {
   period: 'Expected 05.2028',
   location: 'Arlington, Texas',
   details: ['GPA: 3.75 / 4.00 · Highest Honors'],
+  recognition: {
+    title: 'Tutor of the Month – Tutor Choice',
+    issuer: 'UTA Learning Resource Center',
+    period: 'October/November 2026',
+    description: 'Recognized for outstanding contributions and dedication to student success as a Math Tutor.',
+    certificate: '/tutor-of-the-month-uta-2026.jpg',
+  },
   coursework: [
     'Data Structures & Algorithms',
     'Object-Oriented Programming',
