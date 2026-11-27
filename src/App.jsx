@@ -10,6 +10,7 @@ function Icon({ name, size = 16, ...props }) {
     github: <><path d="M9 19c-4 1.3-4-2-5.5-2.5M15 22v-3.3a2.9 2.9 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6A4.7 4.7 0 0 0 18.4 7a4.3 4.3 0 0 0-.1-3.5s-1 0-3.5 1.8a12 12 0 0 0-6.6 0C5.7 3.5 4.7 3.5 4.7 3.5A4.3 4.3 0 0 0 4.6 7a4.7 4.7 0 0 0-1.3 3.4c0 4.7 2.8 5.7 5.5 6A2.9 2.9 0 0 0 8 18.7V22"/></>,
     linkedin: <><rect x="3" y="8" width="4" height="13" rx=".5"/><path d="M5 3v.1M11 21V8h4v2a4 4 0 0 1 7 2.6V21h-4v-8a2 2 0 0 0-4 0v8Z"/></>,
     mail: <><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></>,
+    phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72l.5 3a2 2 0 0 1-.57 2.11L8.72 11.1a16 16 0 0 0 4.18 4.18l1.27-1.27a2 2 0 0 1 2.11-.57l3 .5A2 2 0 0 1 22 16.92Z"/>,
     map: <><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></>,
     clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></>,
     arrow: <><path d="M5 19 19 5M9 5h10v10"/></>,
@@ -175,7 +176,7 @@ function App() {
       <Section title="Overview">
         <div className="overview-card">
           <div className="overview-roles"><div className="overview-row"><span className="overview-icon"><Icon name="terminal" size={17}/></span><span>Former Software Developer Intern <span className="subtle">@ E-Sutra Technologies</span></span></div><div className="overview-row"><span className="overview-icon"><Icon name="file" size={17}/></span><span>Computer Science · Mathematics Minor <span className="subtle">@ UT Arlington</span></span></div></div>
-          <div className="overview-details"><div><Icon name="map" size={15}/><span>{profile.location}</span></div><div><Icon name="clock" size={15}/><span>{localTime}</span></div><div><Icon name="mail" size={15}/><button type="button" className="inline-button" onClick={copyEmail}>{copied ? 'Email copied!' : profile.email} {copied && <Icon name="check" size={14}/>}</button></div><div><Icon name="file" size={15}/><ExternalLink href={profile.resume}>View resume <Icon name="arrow" size={13}/></ExternalLink></div></div>
+          <div className="overview-details"><div><Icon name="map" size={15}/><span>{profile.location}</span></div><div><Icon name="clock" size={15}/><span>{localTime}</span></div><div><Icon name="mail" size={15}/><button type="button" className="inline-button" onClick={copyEmail}>{copied ? 'Email copied!' : profile.email} {copied && <Icon name="check" size={14}/>}</button></div><div><Icon name="phone" size={15}/><a href={`tel:${profile.phone.replace(/[^+\d]/g, '')}`}>{profile.phone}</a></div><div><Icon name="file" size={15}/><ExternalLink href={profile.resume}>View resume <Icon name="arrow" size={13}/></ExternalLink></div></div>
         </div>
       </Section>
 

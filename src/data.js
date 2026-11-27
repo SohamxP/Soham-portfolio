@@ -4,6 +4,7 @@ export const profile = {
   tagline: 'I like building things that hold up beyond the demo.',
   location: 'Arlington, Texas, USA',
   email: 'work.panchalsoham@gmail.com',
+  phone: '+1 (817) 970-3444',
   github: 'https://github.com/SohamxP',
   linkedin: 'https://linkedin.com/in/soham-panchal',
   resume: '/resume.pdf',
